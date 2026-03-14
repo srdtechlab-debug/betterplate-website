@@ -10,14 +10,20 @@
 
 <style>
 
-*{box-sizing:border-box;}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
 body{
-margin:0;
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-background:#F6F9F7;
-color:#2F3E34;
+background:#F7FAF8;
+color:#1F2933;
+line-height:1.6;
 }
+
+/* container */
 
 .container{
 max-width:1200px;
@@ -25,9 +31,14 @@ margin:auto;
 padding:0 24px;
 }
 
+/* navbar */
+
 header{
+position:sticky;
+top:0;
 background:white;
 border-bottom:1px solid #eee;
+z-index:100;
 }
 
 .nav{
@@ -45,66 +56,88 @@ font-weight:600;
 font-size:18px;
 }
 
-.logo img{width:34px;}
-
-.nav a{
-margin-left:24px;
-text-decoration:none;
-color:#2F3E34;
+.logo img{
+width:36px;
 }
 
+.nav a{
+margin-left:28px;
+text-decoration:none;
+color:#334155;
+font-size:15px;
+}
+
+/* hero */
+
 .hero{
-padding:140px 0 100px;
+padding:140px 0 120px;
 text-align:center;
+
+background:
+radial-gradient(circle at 20% 20%, #DCEFE4 0%, transparent 40%),
+radial-gradient(circle at 80% 30%, #E5F5EC 0%, transparent 40%),
+#F7FAF8;
 }
 
 .hero h1{
-font-size:56px;
-line-height:1.1;
-margin-bottom:20px;
+font-size:64px;
+line-height:1.05;
+letter-spacing:-1px;
+margin-bottom:24px;
 }
 
 .hero p{
 font-size:22px;
-color:#5B6A61;
 max-width:600px;
 margin:auto;
+color:#475569;
 }
 
 .button{
-display:inline-block;
-margin-top:40px;
-padding:16px 34px;
 background:#1F5E2E;
 color:white;
+padding:16px 36px;
 border-radius:10px;
-text-decoration:none;
 font-weight:500;
+text-decoration:none;
+display:inline-block;
+margin-top:40px;
 }
 
-.hero-images{
+/* phone mockups */
+
+.hero-phones{
 margin-top:80px;
 display:flex;
 justify-content:center;
-gap:40px;
+gap:50px;
 flex-wrap:wrap;
 }
 
 .phone{
 width:260px;
 border-radius:28px;
-box-shadow:0 25px 60px rgba(0,0,0,0.15);
+box-shadow:0 40px 80px rgba(0,0,0,0.18);
+transition:transform .3s;
 }
+
+.phone:hover{
+transform:translateY(-10px);
+}
+
+/* sections */
 
 .section{
 padding:120px 0;
 }
 
 .section-title{
-font-size:40px;
+font-size:44px;
 text-align:center;
 margin-bottom:80px;
 }
+
+/* features */
 
 .features{
 display:grid;
@@ -115,52 +148,58 @@ gap:40px;
 .feature{
 background:white;
 padding:40px;
-border-radius:18px;
-box-shadow:0 12px 40px rgba(0,0,0,0.05);
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,0.06);
 }
 
 .feature h3{
-margin-top:0;
+margin-bottom:10px;
 }
+
+/* split layout */
 
 .split{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:60px;
+gap:80px;
 align-items:center;
 }
 
 .split img{
 width:100%;
 border-radius:24px;
-box-shadow:0 25px 60px rgba(0,0,0,0.12);
+box-shadow:0 30px 70px rgba(0,0,0,0.15);
 }
 
-.cta{
+/* CTA */
+
+.cta-section{
 text-align:center;
 background:white;
-padding:100px 40px;
+padding:100px 60px;
 border-radius:30px;
-box-shadow:0 20px 60px rgba(0,0,0,0.06);
+box-shadow:0 25px 60px rgba(0,0,0,0.08);
 }
 
-.cta h2{
-font-size:40px;
+.cta-section h2{
+font-size:42px;
 margin-bottom:10px;
 }
+
+/* footer */
 
 footer{
 margin-top:120px;
 padding:60px;
-background:#2F3E34;
-color:#DDE7E1;
+background:#1F2933;
+color:#D1D5DB;
 text-align:center;
 }
 
 footer a{
-color:#DDE7E1;
+color:#D1D5DB;
+margin:0 12px;
 text-decoration:none;
-margin:0 14px;
 }
 
 </style>
@@ -168,7 +207,6 @@ margin:0 14px;
 </head>
 
 <body>
-
 
 <header>
 
@@ -204,7 +242,7 @@ and build healthier eating habits.
 
 <a class="button">Coming Soon on Google Play</a>
 
-<div class="hero-images">
+<div class="hero-phones">
 
 <img src="home.png" class="phone">
 <img src="addmeal.png" class="phone">
@@ -227,24 +265,24 @@ and build healthier eating habits.
 <div class="feature">
 <h3>Understand Nutrition</h3>
 <p>
-See your macro and micronutrient balance instantly
-and understand what your body actually needs.
+Track macro and micronutrients instantly and see
+what your body actually needs.
 </p>
 </div>
 
 <div class="feature">
 <h3>Simple Meal Logging</h3>
 <p>
-Log meals quickly and focus on insights rather than
-complicated calorie tracking.
+Log meals quickly without complicated calorie
+tracking workflows.
 </p>
 </div>
 
 <div class="feature">
 <h3>Build Healthy Habits</h3>
 <p>
-BetterPlate focuses on helping you build long-term
-sustainable eating habits.
+BetterPlate focuses on helping you develop
+long-term sustainable eating habits.
 </p>
 </div>
 
@@ -264,9 +302,8 @@ sustainable eating habits.
 <h2>Track Meals Easily</h2>
 
 <p>
-Add meals quickly and see nutrition data update
-instantly. BetterPlate focuses on clarity rather
-than overwhelming data.
+Add meals quickly and see nutrition data update instantly.
+BetterPlate focuses on clarity rather than overwhelming data.
 </p>
 
 </div>
@@ -276,7 +313,6 @@ than overwhelming data.
 </div>
 
 </section>
-
 
 
 <section class="section">
@@ -290,7 +326,7 @@ than overwhelming data.
 <h2>Review Your Nutrition Journey</h2>
 
 <p>
-Analyze your nutrition history and see trends
+Analyze daily, weekly, and monthly trends
 in your eating habits over time.
 </p>
 
@@ -299,7 +335,6 @@ in your eating habits over time.
 </div>
 
 </section>
-
 
 
 <section class="section">
@@ -311,9 +346,8 @@ in your eating habits over time.
 <h2>Smart Nutrition Insights</h2>
 
 <p>
-BetterPlate analyzes your nutrition patterns
-and provides simple actionable insights to
-improve your diet.
+BetterPlate analyzes patterns in your nutrition
+and provides simple insights to improve your diet.
 </p>
 
 </div>
@@ -325,12 +359,11 @@ improve your diet.
 </section>
 
 
-
 <section class="section">
 
 <div class="container">
 
-<div class="cta">
+<div class="cta-section">
 
 <h2>Start Eating Better Today</h2>
 
@@ -338,6 +371,8 @@ improve your diet.
 BetterPlate is launching soon on Google Play.
 Join early access to be among the first users.
 </p>
+
+<br>
 
 <a class="button">Join Early Access</a>
 
@@ -348,24 +383,24 @@ Join early access to be among the first users.
 </section>
 
 
-
 <footer>
 
 <p>BetterPlate — Eat Better. Live Better.</p>
 
+<br>
+
 <p>
-
-<a href="/">Home</a> |
-<a href="/about">About</a> |
-<a href="/privacy">Privacy</a> |
+<a href="/">Home</a>
+<a href="/about">About</a>
+<a href="/privacy">Privacy</a>
 <a href="/contact">Contact</a>
-
 </p>
+
+<br>
 
 <p>© 2026 BetterPlate</p>
 
 </footer>
-
 
 </body>
 </html>
