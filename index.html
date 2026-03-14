@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,22 +10,19 @@
 
 <style>
 
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
 body{
 margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 background:#F6F9F7;
 color:#2F3E34;
-line-height:1.6;
 }
 
 .container{
-max-width:1100px;
+max-width:1200px;
 margin:auto;
-padding:0 20px;
+padding:0 24px;
 }
 
 header{
@@ -35,7 +34,7 @@ border-bottom:1px solid #eee;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 0;
+padding:22px 0;
 }
 
 .logo{
@@ -46,112 +45,113 @@ font-weight:600;
 font-size:18px;
 }
 
-.logo img{
-width:34px;
-}
+.logo img{width:34px;}
 
 .nav a{
+margin-left:24px;
 text-decoration:none;
 color:#2F3E34;
-margin-left:25px;
-font-size:15px;
 }
 
 .hero{
-padding:120px 20px 100px;
+padding:140px 0 100px;
 text-align:center;
 }
 
 .hero h1{
-font-size:48px;
-margin-bottom:15px;
-letter-spacing:-0.5px;
+font-size:56px;
+line-height:1.1;
+margin-bottom:20px;
 }
 
 .hero p{
-font-size:20px;
-color:#55635A;
+font-size:22px;
+color:#5B6A61;
 max-width:600px;
 margin:auto;
 }
 
 .button{
 display:inline-block;
-margin-top:35px;
-background:#6FAF8F;
+margin-top:40px;
+padding:16px 34px;
+background:#1F5E2E;
 color:white;
-padding:14px 30px;
-border-radius:8px;
+border-radius:10px;
 text-decoration:none;
 font-weight:500;
 }
 
+.hero-images{
+margin-top:80px;
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.phone{
+width:260px;
+border-radius:28px;
+box-shadow:0 25px 60px rgba(0,0,0,0.15);
+}
+
 .section{
-padding:90px 0;
+padding:120px 0;
 }
 
 .section-title{
+font-size:40px;
 text-align:center;
-font-size:32px;
-margin-bottom:50px;
+margin-bottom:80px;
 }
 
-.cards{
+.features{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:40px;
 }
 
-.card{
+.feature{
 background:white;
-padding:35px;
-border-radius:14px;
-box-shadow:0 8px 24px rgba(0,0,0,0.05);
-text-align:center;
+padding:40px;
+border-radius:18px;
+box-shadow:0 12px 40px rgba(0,0,0,0.05);
 }
 
-.card h3{
-margin-bottom:10px;
+.feature h3{
+margin-top:0;
 }
 
-.card p{
-color:#5f6f65;
-}
-
-.steps{
+.split{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
-margin-top:30px;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
 }
 
-.step{
-background:white;
-padding:35px;
-border-radius:14px;
-box-shadow:0 8px 24px rgba(0,0,0,0.05);
-text-align:center;
+.split img{
+width:100%;
+border-radius:24px;
+box-shadow:0 25px 60px rgba(0,0,0,0.12);
 }
 
 .cta{
-background:white;
-border-radius:18px;
-padding:80px 20px;
 text-align:center;
-box-shadow:0 8px 24px rgba(0,0,0,0.04);
+background:white;
+padding:100px 40px;
+border-radius:30px;
+box-shadow:0 20px 60px rgba(0,0,0,0.06);
 }
 
 .cta h2{
-font-size:32px;
-}
-
-.cta p{
-color:#5f6f65;
+font-size:40px;
+margin-bottom:10px;
 }
 
 footer{
-margin-top:80px;
-padding:40px 0;
+margin-top:120px;
+padding:60px;
 background:#2F3E34;
 color:#DDE7E1;
 text-align:center;
@@ -160,20 +160,22 @@ text-align:center;
 footer a{
 color:#DDE7E1;
 text-decoration:none;
-margin:0 12px;
-font-size:14px;
+margin:0 14px;
 }
 
 </style>
+
 </head>
 
 <body>
 
+
 <header>
+
 <div class="container nav">
 
 <div class="logo">
-<img src="/icon.png">
+<img src="icon.png">
 BetterPlate
 </div>
 
@@ -185,12 +187,15 @@ BetterPlate
 </div>
 
 </div>
+
 </header>
 
 
 <section class="hero">
 
-<h1>Eat Better Without Counting Calories</h1>
+<div class="container">
+
+<h1>Eat Better Without<br>Counting Calories</h1>
 
 <p>
 BetterPlate helps you understand your nutrition balance
@@ -199,8 +204,16 @@ and build healthier eating habits.
 
 <a class="button">Coming Soon on Google Play</a>
 
-</section>
+<div class="hero-images">
 
+<img src="home.png" class="phone">
+<img src="addmeal.png" class="phone">
+
+</div>
+
+</div>
+
+</section>
 
 
 <section class="section">
@@ -209,31 +222,77 @@ and build healthier eating habits.
 
 <h2 class="section-title">Why BetterPlate?</h2>
 
-<div class="cards">
+<div class="features">
 
-<div class="card">
+<div class="feature">
 <h3>Understand Nutrition</h3>
 <p>
-See what nutrients your body actually receives
-from the food you eat.
+See your macro and micronutrient balance instantly
+and understand what your body actually needs.
 </p>
 </div>
 
-<div class="card">
-<h3>Simple Tracking</h3>
+<div class="feature">
+<h3>Simple Meal Logging</h3>
 <p>
-Log meals quickly without complicated calorie
-tracking workflows.
+Log meals quickly and focus on insights rather than
+complicated calorie tracking.
 </p>
 </div>
 
-<div class="card">
-<h3>Build Better Habits</h3>
+<div class="feature">
+<h3>Build Healthy Habits</h3>
 <p>
-BetterPlate focuses on helping you develop
-sustainable healthy eating habits.
+BetterPlate focuses on helping you build long-term
+sustainable eating habits.
 </p>
 </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="container split">
+
+<div>
+
+<h2>Track Meals Easily</h2>
+
+<p>
+Add meals quickly and see nutrition data update
+instantly. BetterPlate focuses on clarity rather
+than overwhelming data.
+</p>
+
+</div>
+
+<img src="addmeal.png">
+
+</div>
+
+</section>
+
+
+
+<section class="section">
+
+<div class="container split">
+
+<img src="history.png">
+
+<div>
+
+<h2>Review Your Nutrition Journey</h2>
+
+<p>
+Analyze your nutrition history and see trends
+in your eating habits over time.
+</p>
 
 </div>
 
@@ -245,34 +304,21 @@ sustainable healthy eating habits.
 
 <section class="section">
 
-<div class="container">
+<div class="container split">
 
-<h2 class="section-title">How It Works</h2>
+<div>
 
-<div class="steps">
+<h2>Smart Nutrition Insights</h2>
 
-<div class="step">
-<h3>Log Your Meals</h3>
 <p>
-Track the foods you eat during the day.
+BetterPlate analyzes your nutrition patterns
+and provides simple actionable insights to
+improve your diet.
 </p>
-</div>
-
-<div class="step">
-<h3>Analyze Nutrition</h3>
-<p>
-BetterPlate calculates macro and micronutrients automatically.
-</p>
-</div>
-
-<div class="step">
-<h3>Improve Habits</h3>
-<p>
-Understand patterns and build healthier eating habits.
-</p>
-</div>
 
 </div>
+
+<img src="insights.png">
 
 </div>
 
@@ -308,15 +354,18 @@ Join early access to be among the first users.
 <p>BetterPlate — Eat Better. Live Better.</p>
 
 <p>
+
 <a href="/">Home</a> |
 <a href="/about">About</a> |
 <a href="/privacy">Privacy</a> |
 <a href="/contact">Contact</a>
+
 </p>
 
 <p>© 2026 BetterPlate</p>
 
 </footer>
+
 
 </body>
 </html>
