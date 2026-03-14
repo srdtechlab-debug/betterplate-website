@@ -8,6 +8,8 @@
 
 <title>BetterPlate — Eat Better Without Counting Calories</title>
 
+<link rel="icon" type="image/png" href="icon.png">
+
 <style>
 
 *{
@@ -52,13 +54,18 @@ padding:22px 0;
 .logo{
 display:flex;
 align-items:center;
-gap:10px;
-font-weight:600;
-font-size:18px;
+gap:14px;
+font-weight:700;
+font-size:22px;
+letter-spacing:-0.3px;
+color:#1f3d2b;
 }
 
 .logo img{
-width:36px;
+width:44px;
+height:44px;
+border-radius:10px;
+box-shadow:0 6px 14px rgba(0,0,0,0.15);
 }
 
 .nav a{
@@ -116,14 +123,24 @@ flex-wrap:wrap;
 }
 
 .phone{
-width:260px;
-border-radius:28px;
-box-shadow:0 40px 90px rgba(0,0,0,0.18);
-transition:transform .4s ease;
+width:270px;
+border-radius:36px;
+background:black;
+padding:10px;
+box-shadow:
+0 60px 120px rgba(0,0,0,0.25),
+0 20px 40px rgba(0,0,0,0.15);
+transition:all .4s ease;
+}
+
+.phone img{
+width:100%;
+border-radius:26px;
+display:block;
 }
 
 .phone:hover{
-transform:translateY(-15px);
+transform:translateY(-15px) scale(1.03);
 }
 
 .phone.left{
@@ -266,9 +283,9 @@ and build healthier eating habits.
 
 <div class="hero-phones">
 
-<img src="app-home.png" class="phone left">
-
-<img src="app-addmeal.png" class="phone right">
+<div class="phone">
+<img src="app-home.png">
+</div>
 
 </div>
 
