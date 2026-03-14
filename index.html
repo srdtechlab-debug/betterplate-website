@@ -3,83 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="logo">
-<img src="/icon.png" width="32">
-BetterPlate
-</div>
+
+<title>BetterPlate — Eat Better Without Counting Calories</title>
 
 <style>
 
+*{
+box-sizing:border-box;
+}
+
 body{
-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 background:#F6F9F7;
 color:#2F3E34;
 line-height:1.6;
 }
 
+.container{
+max-width:1100px;
+margin:auto;
+padding:0 20px;
+}
+
+header{
+background:white;
+border-bottom:1px solid #eee;
+}
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 0;
+}
+
 .logo{
 display:flex;
 align-items:center;
+gap:10px;
 font-weight:600;
 font-size:18px;
-gap:10px;
+}
+
+.logo img{
+width:34px;
+}
+
+.nav a{
+text-decoration:none;
+color:#2F3E34;
+margin-left:25px;
+font-size:15px;
 }
 
 .hero{
-background:#F6F9F7;
+padding:120px 20px 100px;
 text-align:center;
-padding:120px 20px;
 }
 
 .hero h1{
-font-size:44px;
+font-size:48px;
 margin-bottom:15px;
+letter-spacing:-0.5px;
 }
 
 .hero p{
 font-size:20px;
-color:#4f5f55;
+color:#55635A;
+max-width:600px;
+margin:auto;
 }
 
 .button{
 display:inline-block;
-margin-top:30px;
-padding:14px 28px;
+margin-top:35px;
 background:#6FAF8F;
 color:white;
+padding:14px 30px;
 border-radius:8px;
 text-decoration:none;
 font-weight:500;
 }
 
 .section{
-background:white;
-margin-top:40px;
-border-radius:12px;
-padding:60px;
+padding:90px 0;
 }
 
-.feature,.step{
+.section-title{
+text-align:center;
+font-size:32px;
+margin-bottom:50px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.card{
 background:white;
-border-radius:10px;
-padding:30px;
-box-shadow:0 4px 12px rgba(0,0,0,0.05);
+padding:35px;
+border-radius:14px;
+box-shadow:0 8px 24px rgba(0,0,0,0.05);
+text-align:center;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+color:#5f6f65;
+}
+
+.steps{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+margin-top:30px;
+}
+
+.step{
+background:white;
+padding:35px;
+border-radius:14px;
+box-shadow:0 8px 24px rgba(0,0,0,0.05);
+text-align:center;
 }
 
 .cta{
-background:#EAF3EF;
-text-align:center;
+background:white;
+border-radius:18px;
 padding:80px 20px;
-border-radius:12px;
-margin-top:40px;
+text-align:center;
+box-shadow:0 8px 24px rgba(0,0,0,0.04);
+}
+
+.cta h2{
+font-size:32px;
+}
+
+.cta p{
+color:#5f6f65;
 }
 
 footer{
+margin-top:80px;
+padding:40px 0;
 background:#2F3E34;
 color:#DDE7E1;
-padding:40px;
 text-align:center;
+}
+
+footer a{
+color:#DDE7E1;
+text-decoration:none;
+margin:0 12px;
+font-size:14px;
 }
 
 </style>
@@ -88,9 +170,12 @@ text-align:center;
 <body>
 
 <header>
-<div class="nav">
+<div class="container nav">
 
-<div class="logo">BetterPlate</div>
+<div class="logo">
+<img src="/icon.png">
+BetterPlate
+</div>
 
 <div>
 <a href="/">Home</a>
@@ -112,105 +197,110 @@ BetterPlate helps you understand your nutrition balance
 and build healthier eating habits.
 </p>
 
-<a class="button" href="#">Coming Soon on Google Play</a>
+<a class="button">Coming Soon on Google Play</a>
 
 </section>
 
 
+
 <section class="section">
+
 <div class="container">
 
-<h2>Why BetterPlate?</h2>
+<h2 class="section-title">Why BetterPlate?</h2>
 
-<p style="text-align:center;max-width:700px;margin:auto;">
-Most nutrition apps overwhelm users with numbers, calories,
-and complicated charts. BetterPlate focuses on what really matters —
-helping you understand your nutrition and build healthier habits.
+<div class="cards">
+
+<div class="card">
+<h3>Understand Nutrition</h3>
+<p>
+See what nutrients your body actually receives
+from the food you eat.
 </p>
+</div>
+
+<div class="card">
+<h3>Simple Tracking</h3>
+<p>
+Log meals quickly without complicated calorie
+tracking workflows.
+</p>
+</div>
+
+<div class="card">
+<h3>Build Better Habits</h3>
+<p>
+BetterPlate focuses on helping you develop
+sustainable healthy eating habits.
+</p>
+</div>
 
 </div>
+
+</div>
+
 </section>
 
 
+
 <section class="section">
+
 <div class="container">
 
-<h2>How It Works</h2>
+<h2 class="section-title">How It Works</h2>
 
 <div class="steps">
 
 <div class="step">
 <h3>Log Your Meals</h3>
 <p>
-Quickly track what you eat during the day.
+Track the foods you eat during the day.
 </p>
 </div>
 
 <div class="step">
 <h3>Analyze Nutrition</h3>
 <p>
-BetterPlate calculates your macro and micronutrients automatically.
+BetterPlate calculates macro and micronutrients automatically.
 </p>
 </div>
 
 <div class="step">
 <h3>Improve Habits</h3>
 <p>
-Understand your eating patterns and build healthier habits over time.
+Understand patterns and build healthier eating habits.
 </p>
 </div>
 
 </div>
 
 </div>
+
 </section>
+
 
 
 <section class="section">
+
 <div class="container">
 
-<h2>Key Features</h2>
-
-<div class="features">
-
-<div class="feature">
-<h3>Smart Nutrition Insights</h3>
-<p>
-Understand your macro and micronutrient balance instantly.
-</p>
-</div>
-
-<div class="feature">
-<h3>Simple Food Logging</h3>
-<p>
-Track meals quickly without complicated calorie counting.
-</p>
-</div>
-
-<div class="feature">
-<h3>Habit Focused</h3>
-<p>
-BetterPlate focuses on building long-term healthy eating habits.
-</p>
-</div>
-
-</div>
-
-</div>
-</section>
-
-
-<section class="cta">
+<div class="cta">
 
 <h2>Start Eating Better Today</h2>
 
 <p>
 BetterPlate is launching soon on Google Play.
+Join early access to be among the first users.
 </p>
 
-<a class="button" href="#" style="background:white;color:#2ecc71;">Join Early Access</a>
+<a class="button">Join Early Access</a>
+
+</div>
+
+</div>
 
 </section>
+
 
 
 <footer>
