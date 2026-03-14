@@ -11,9 +11,9 @@
 <style>
 
 *{
-box-sizing:border-box;
 margin:0;
 padding:0;
+box-sizing:border-box;
 }
 
 body{
@@ -21,6 +21,7 @@ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 background:#F7FAF8;
 color:#1F2933;
 line-height:1.6;
+overflow-x:hidden;
 }
 
 /* container */
@@ -61,16 +62,16 @@ width:36px;
 }
 
 .nav a{
-margin-left:28px;
+margin-left:26px;
 text-decoration:none;
 color:#334155;
 font-size:15px;
 }
 
-/* hero */
+/* HERO */
 
 .hero{
-padding:140px 0 120px;
+padding:150px 0 120px;
 text-align:center;
 
 background:
@@ -88,7 +89,7 @@ margin-bottom:24px;
 
 .hero p{
 font-size:22px;
-max-width:600px;
+max-width:650px;
 margin:auto;
 color:#475569;
 }
@@ -97,35 +98,43 @@ color:#475569;
 background:#1F5E2E;
 color:white;
 padding:16px 36px;
-border-radius:10px;
+border-radius:12px;
 font-weight:500;
 text-decoration:none;
 display:inline-block;
 margin-top:40px;
 }
 
-/* phone mockups */
+/* FLOATING PHONES */
 
 .hero-phones{
-margin-top:80px;
+margin-top:90px;
 display:flex;
 justify-content:center;
-gap:50px;
+gap:40px;
 flex-wrap:wrap;
 }
 
 .phone{
 width:260px;
 border-radius:28px;
-box-shadow:0 40px 80px rgba(0,0,0,0.18);
-transition:transform .3s;
+box-shadow:0 40px 90px rgba(0,0,0,0.18);
+transition:transform .4s ease;
 }
 
 .phone:hover{
-transform:translateY(-10px);
+transform:translateY(-15px);
 }
 
-/* sections */
+.phone.left{
+transform:rotate(-6deg);
+}
+
+.phone.right{
+transform:rotate(6deg);
+}
+
+/* FEATURES GRID */
 
 .section{
 padding:120px 0;
@@ -134,35 +143,35 @@ padding:120px 0;
 .section-title{
 font-size:44px;
 text-align:center;
-margin-bottom:80px;
+margin-bottom:70px;
 }
-
-/* features */
 
 .features{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:40px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
 }
 
 .feature{
 background:white;
-padding:40px;
-border-radius:20px;
+padding:36px;
+border-radius:18px;
 box-shadow:0 20px 50px rgba(0,0,0,0.06);
+transition:transform .3s;
 }
 
-.feature h3{
-margin-bottom:10px;
+.feature:hover{
+transform:translateY(-8px);
 }
 
-/* split layout */
+/* SPLIT SECTIONS */
 
 .split{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:80px;
 align-items:center;
+margin-bottom:120px;
 }
 
 .split img{
@@ -186,7 +195,7 @@ font-size:42px;
 margin-bottom:10px;
 }
 
-/* footer */
+/* FOOTER */
 
 footer{
 margin-top:120px;
@@ -200,6 +209,19 @@ footer a{
 color:#D1D5DB;
 margin:0 12px;
 text-decoration:none;
+}
+
+/* ANIMATIONS */
+
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:all .8s ease;
+}
+
+.fade.visible{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
@@ -244,8 +266,9 @@ and build healthier eating habits.
 
 <div class="hero-phones">
 
-<img src="home.png" class="phone">
-<img src="addmeal.png" class="phone">
+<img src="app-home.png" class="phone left">
+
+<img src="app-addmeal.png" class="phone right">
 
 </div>
 
@@ -258,11 +281,11 @@ and build healthier eating habits.
 
 <div class="container">
 
-<h2 class="section-title">Why BetterPlate?</h2>
+<h2 class="section-title fade">Why BetterPlate?</h2>
 
 <div class="features">
 
-<div class="feature">
+<div class="feature fade">
 <h3>Understand Nutrition</h3>
 <p>
 Track macro and micronutrients instantly and see
@@ -270,7 +293,7 @@ what your body actually needs.
 </p>
 </div>
 
-<div class="feature">
+<div class="feature fade">
 <h3>Simple Meal Logging</h3>
 <p>
 Log meals quickly without complicated calorie
@@ -278,7 +301,7 @@ tracking workflows.
 </p>
 </div>
 
-<div class="feature">
+<div class="feature fade">
 <h3>Build Healthy Habits</h3>
 <p>
 BetterPlate focuses on helping you develop
@@ -293,9 +316,7 @@ long-term sustainable eating habits.
 </section>
 
 
-<section class="section">
-
-<div class="container split">
+<section class="section container split fade">
 
 <div>
 
@@ -303,43 +324,33 @@ long-term sustainable eating habits.
 
 <p>
 Add meals quickly and see nutrition data update instantly.
-BetterPlate focuses on clarity rather than overwhelming data.
 </p>
 
 </div>
 
-<img src="addmeal.png">
-
-</div>
+<img src="app-addmeal.png">
 
 </section>
 
 
-<section class="section">
+<section class="section container split fade">
 
-<div class="container split">
-
-<img src="history.png">
+<img src="app-history.png">
 
 <div>
 
 <h2>Review Your Nutrition Journey</h2>
 
 <p>
-Analyze daily, weekly, and monthly trends
-in your eating habits over time.
+Analyze daily, weekly, and monthly nutrition trends.
 </p>
-
-</div>
 
 </div>
 
 </section>
 
 
-<section class="section">
-
-<div class="container split">
+<section class="section container split fade">
 
 <div>
 
@@ -347,12 +358,27 @@ in your eating habits over time.
 
 <p>
 BetterPlate analyzes patterns in your nutrition
-and provides simple insights to improve your diet.
+and gives actionable insights.
 </p>
 
 </div>
 
-<img src="insights.png">
+<img src="app-insights.png">
+
+</section>
+
+
+<section class="section container split fade">
+
+<img src="app-profile.png">
+
+<div>
+
+<h2>Personalized Goals</h2>
+
+<p>
+Set your calorie targets, macros and health goals.
+</p>
 
 </div>
 
@@ -363,7 +389,7 @@ and provides simple insights to improve your diet.
 
 <div class="container">
 
-<div class="cta-section">
+<div class="cta-section fade">
 
 <h2>Start Eating Better Today</h2>
 
@@ -390,10 +416,12 @@ Join early access to be among the first users.
 <br>
 
 <p>
+
 <a href="/">Home</a>
 <a href="/about">About</a>
 <a href="/privacy">Privacy</a>
 <a href="/contact">Contact</a>
+
 </p>
 
 <br>
@@ -402,5 +430,25 @@ Join early access to be among the first users.
 
 </footer>
 
+
+<script>
+
+const elements=document.querySelectorAll(".fade");
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+}
+});
+});
+
+elements.forEach(el=>{
+observer.observe(el);
+});
+
+</script>
+
 </body>
+
 </html>
