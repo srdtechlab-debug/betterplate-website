@@ -19,7 +19,7 @@ box-sizing:border-box;
 }
 
 body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
 background:#F7FAF8;
 color:#1F2933;
 line-height:1.6;
@@ -75,7 +75,7 @@ color:#334155;
 font-size:15px;
 }
 
-/* HERO */
+/* hero */
 
 .hero{
 padding:150px 0 120px;
@@ -112,7 +112,7 @@ display:inline-block;
 margin-top:40px;
 }
 
-/* FLOATING PHONES */
+/* phone mockups */
 
 .hero-phones{
 margin-top:90px;
@@ -143,15 +143,7 @@ display:block;
 transform:translateY(-15px) scale(1.03);
 }
 
-.phone.left{
-transform:rotate(-6deg);
-}
-
-.phone.right{
-transform:rotate(6deg);
-}
-
-/* FEATURES GRID */
+/* sections */
 
 .section{
 padding:120px 0;
@@ -162,6 +154,8 @@ font-size:44px;
 text-align:center;
 margin-bottom:70px;
 }
+
+/* features grid */
 
 .features{
 display:grid;
@@ -181,7 +175,7 @@ transition:transform .3s;
 transform:translateY(-8px);
 }
 
-/* SPLIT SECTIONS */
+/* split layout */
 
 .split{
 display:grid;
@@ -197,6 +191,64 @@ border-radius:24px;
 box-shadow:0 30px 70px rgba(0,0,0,0.15);
 }
 
+/* chart section */
+
+.chart-card{
+background:white;
+padding:60px;
+border-radius:24px;
+box-shadow:0 30px 60px rgba(0,0,0,0.08);
+max-width:700px;
+margin:auto;
+text-align:center;
+}
+
+.chart{
+display:flex;
+align-items:flex-end;
+justify-content:center;
+gap:40px;
+height:200px;
+margin-bottom:20px;
+}
+
+.bar{
+width:60px;
+border-radius:12px;
+animation:grow 2s ease forwards;
+}
+
+.protein{
+background:#4CAF50;
+height:0;
+animation-delay:.2s;
+}
+
+.carbs{
+background:#4A90E2;
+height:0;
+animation-delay:.4s;
+}
+
+.fat{
+background:#F4A261;
+height:0;
+animation-delay:.6s;
+}
+
+.labels{
+display:flex;
+justify-content:center;
+gap:50px;
+color:#555;
+}
+
+@keyframes grow{
+to{
+height:160px;
+}
+}
+
 /* CTA */
 
 .cta-section{
@@ -207,12 +259,7 @@ border-radius:30px;
 box-shadow:0 25px 60px rgba(0,0,0,0.08);
 }
 
-.cta-section h2{
-font-size:42px;
-margin-bottom:10px;
-}
-
-/* FOOTER */
+/* footer */
 
 footer{
 margin-top:120px;
@@ -228,7 +275,7 @@ margin:0 12px;
 text-decoration:none;
 }
 
-/* ANIMATIONS */
+/* scroll animations */
 
 .fade{
 opacity:0;
@@ -245,7 +292,9 @@ transform:translateY(0);
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -268,6 +317,7 @@ BetterPlate
 </header>
 
 
+
 <section class="hero">
 
 <div class="container">
@@ -287,11 +337,16 @@ and build healthier eating habits.
 <img src="app-home.png">
 </div>
 
+<div class="phone">
+<img src="app-addmeal.png">
+</div>
+
 </div>
 
 </div>
 
 </section>
+
 
 
 <section class="section">
@@ -304,26 +359,17 @@ and build healthier eating habits.
 
 <div class="feature fade">
 <h3>Understand Nutrition</h3>
-<p>
-Track macro and micronutrients instantly and see
-what your body actually needs.
-</p>
+<p>Track macro and micronutrients instantly.</p>
 </div>
 
 <div class="feature fade">
 <h3>Simple Meal Logging</h3>
-<p>
-Log meals quickly without complicated calorie
-tracking workflows.
-</p>
+<p>Log meals quickly without complicated calorie counting.</p>
 </div>
 
 <div class="feature fade">
 <h3>Build Healthy Habits</h3>
-<p>
-BetterPlate focuses on helping you develop
-long-term sustainable eating habits.
-</p>
+<p>Focus on long-term sustainable eating habits.</p>
 </div>
 
 </div>
@@ -333,16 +379,12 @@ long-term sustainable eating habits.
 </section>
 
 
+
 <section class="section container split fade">
 
 <div>
-
 <h2>Track Meals Easily</h2>
-
-<p>
-Add meals quickly and see nutrition data update instantly.
-</p>
-
+<p>Add meals quickly and see nutrition update instantly.</p>
 </div>
 
 <img src="app-addmeal.png">
@@ -350,34 +392,25 @@ Add meals quickly and see nutrition data update instantly.
 </section>
 
 
+
 <section class="section container split fade">
 
 <img src="app-history.png">
 
 <div>
-
 <h2>Review Your Nutrition Journey</h2>
-
-<p>
-Analyze daily, weekly, and monthly nutrition trends.
-</p>
-
+<p>Analyze daily and weekly nutrition trends.</p>
 </div>
 
 </section>
 
 
+
 <section class="section container split fade">
 
 <div>
-
 <h2>Smart Nutrition Insights</h2>
-
-<p>
-BetterPlate analyzes patterns in your nutrition
-and gives actionable insights.
-</p>
-
+<p>BetterPlate provides simple insights to improve your diet.</p>
 </div>
 
 <img src="app-insights.png">
@@ -385,21 +418,48 @@ and gives actionable insights.
 </section>
 
 
+
 <section class="section container split fade">
 
 <img src="app-profile.png">
 
 <div>
-
 <h2>Personalized Goals</h2>
+<p>Customize calorie, macro and lifestyle targets.</p>
+</div>
 
-<p>
-Set your calorie targets, macros and health goals.
-</p>
+</section>
+
+
+
+<section class="section">
+
+<div class="container">
+
+<h2 class="section-title">Visualize Your Nutrition</h2>
+
+<div class="chart-card">
+
+<div class="chart">
+
+<div class="bar protein"></div>
+<div class="bar carbs"></div>
+<div class="bar fat"></div>
+
+</div>
+
+<div class="labels">
+<span>Protein</span>
+<span>Carbs</span>
+<span>Fat</span>
+</div>
+
+</div>
 
 </div>
 
 </section>
+
 
 
 <section class="section">
@@ -426,6 +486,7 @@ Join early access to be among the first users.
 </section>
 
 
+
 <footer>
 
 <p>BetterPlate — Eat Better. Live Better.</p>
@@ -433,12 +494,10 @@ Join early access to be among the first users.
 <br>
 
 <p>
-
 <a href="/">Home</a>
 <a href="/about">About</a>
 <a href="/privacy">Privacy</a>
 <a href="/contact">Contact</a>
-
 </p>
 
 <br>
@@ -446,6 +505,7 @@ Join early access to be among the first users.
 <p>© 2026 BetterPlate</p>
 
 </footer>
+
 
 
 <script>
