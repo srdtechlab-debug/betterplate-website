@@ -53,3 +53,36 @@ text-decoration: none;
 border-radius: 6px;
 font-weight: 600;
 }
+.site-footer {
+text-align: center;
+padding: 40px 20px;
+margin-top: 60px;
+border-top: 1px solid #eee;
+color: #666;
+font-size: 14px;
+}
+
+.footer-tagline {
+margin-bottom: 15px;
+font-weight: 500;
+}
+
+.footer-links {
+margin-bottom: 15px;
+}
+
+.footer-links a {
+margin: 0 12px;
+text-decoration: none;
+color: #4CAF50;
+font-weight: 500;
+}
+
+.footer-links a:hover {
+text-decoration: underline;
+}
+
+.footer-copy {
+color: #888;
+font-size: 13px;
+}
