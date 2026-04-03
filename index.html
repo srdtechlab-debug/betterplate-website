@@ -1,571 +1,1167 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BetterPlate – Nutrition Tracking for Real Indian Food</title>
+  <meta name="description" content="BetterPlate is a nutrition tracker built for real Indian meals. Dal, roti, sabzi, rice — 1500+ Indian foods tracked properly. Free on Google Play.">
+  <meta name="keywords" content="Indian nutrition tracker, calorie counter India, dal roti nutrition, Indian food tracker app, BetterPlate">
+  <meta name="author" content="SRD Tech Labs">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://betterplate.net/">
 
-<title>BetterPlate – Eat Better Without Counting Calories</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="BetterPlate helps you build healthy eating habits without counting calories. Simple, visual, and sustainable nutrition tracking.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="BetterPlate – Nutrition Tracking for Real Indian Food">
+  <meta property="og:description" content="Dal, roti, sabzi, rice — tracked properly. 1500+ Indian foods. Free on Google Play.">
+  <meta property="og:image" content="https://betterplate.net/icon.png">
+  <meta property="og:url" content="https://betterplate.net/">
+  <meta property="og:type" content="website">
 
-<meta name="keywords" content="nutrition tracker, no calorie counting, healthy eating app, BetterPlate, food tracking app, eat healthy without dieting">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BetterPlate – Nutrition Tracking for Real Indian Food">
+  <meta name="twitter:description" content="Dal, roti, sabzi, rice — tracked properly. Free on Google Play.">
+  <meta name="twitter:image" content="https://betterplate.net/icon.png">
 
-<meta name="author" content="BetterPlate">
+  <link rel="icon" type="image/png" href="icon.png">
 
-<!-- Open Graph (for WhatsApp, LinkedIn, etc.) -->
-<meta property="og:title" content="BetterPlate – Eat Better Without Counting Calories">
-<meta property="og:description" content="No calorie counting. Just better eating. Build sustainable nutrition habits with BetterPlate.">
-<meta property="og:image" content="https://betterplate.net/icon.png">
-<meta property="og:url" content="https://betterplate.net/">
-<meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BetterPlate – Eat Better Without Counting Calories">
-<meta name="twitter:description" content="No calorie counting. Just better eating.">
-<meta name="twitter:image" content="https://betterplate.net/icon.png">
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MM6MNYY0TF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MM6MNYY0TF');
+  </script>
 
-<!-- Canonical -->
-<link rel="canonical" href="https://betterplate.net/">
-  
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* ─── Tokens ──────────────────────────────────────────────── */
+    :root {
+      --surface:       #fbf9f4;
+      --surface-low:   #f5f3ee;
+      --surface-dim:   #ece9e2;
+      --primary:       #01261f;
+      --primary-mid:   #1a3c34;
+      --primary-light: #2d6a4f;
+      --secondary:     #6d5d2b;
+      --secondary-bg:  #f5edd0;
+      --on-surface:    #1b1c19;
+      --on-mid:        #5c5f58;
+      --on-light:      #9e9e9e;
+      --divider:       #e8e5de;
+      --card:          #ffffff;
+      --radius:        20px;
+      --radius-sm:     12px;
+    }
 
-<title>BetterPlate — Eat Better Without Counting Calories</title>
-<link rel="stylesheet" href="/style.css">
-<link rel="icon" type="image/png" href="icon.png">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-<style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--surface);
+      color: var(--on-surface);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+    /* ─── Nav ─────────────────────────────────────────────────── */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(251, 249, 244, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--divider);
+    }
 
-body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
-background:#F7FAF8;
-color:#1F2933;
-line-height:1.6;
-overflow-x:hidden;
-}
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-/* container */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
 
-.container{
-max-width:1200px;
-margin:auto;
-padding:0 24px;
-}
+    .nav-logo img {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      object-fit: cover;
+    }
 
-/* navbar */
+    .nav-logo-name {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+    }
 
-header{
-position:sticky;
-top:0;
-background:white;
-border-bottom:1px solid #eee;
-z-index:100;
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
 
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:22px 0;
-}
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--on-mid);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
 
-.logo{
-display:flex;
-align-items:center;
-gap:14px;
-font-weight:700;
-font-size:22px;
-letter-spacing:-0.3px;
-color:#1f3d2b;
-}
+    .nav-links a:hover { color: var(--primary); }
 
-.logo img{
-width:44px;
-height:44px;
-border-radius:10px;
-box-shadow:0 6px 14px rgba(0,0,0,0.15);
-}
+    .nav-cta {
+      background: var(--primary) !important;
+      color: #fff !important;
+      padding: 9px 18px !important;
+      border-radius: 100px !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
 
-.nav a{
-margin-left:26px;
-text-decoration:none;
-color:#334155;
-font-size:15px;
-}
+    .nav-cta:hover {
+      background: var(--primary-mid) !important;
+      transform: translateY(-1px) !important;
+    }
 
-/* hero */
+    @media (max-width: 600px) {
+      .nav-links { gap: 16px; }
+      .nav-cta { display: none; }
+    }
 
-.hero{
-padding:150px 0 120px;
-text-align:center;
+    /* ─── Hero ────────────────────────────────────────────────── */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 90px 28px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
 
-background:
-radial-gradient(circle at 20% 20%, #DCEFE4 0%, transparent 40%),
-radial-gradient(circle at 80% 30%, #E5F5EC 0%, transparent 40%),
-#F7FAF8;
-}
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 24px 50px;
+        text-align: center;
+      }
+      .hero-phones { justify-content: center; }
+    }
 
-.hero h1{
-font-size:64px;
-line-height:1.05;
-letter-spacing:-1px;
-margin-bottom:24px;
-}
+    .hero-text { max-width: 480px; }
 
-.hero p{
-font-size:22px;
-max-width:650px;
-margin:auto;
-color:#475569;
-}
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--secondary-bg);
+      border: 1px solid #e0d0a0;
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--secondary);
+      letter-spacing: 0.4px;
+      margin-bottom: 24px;
+    }
 
-.button{
-background:#1F5E2E;
-color:white;
-padding:18px 38px;
-border-radius:14px;
-font-weight:600;
-font-size:16px;
-text-decoration:none;
-display:inline-block;
-transition:all .25s ease;
-}
+    .hero-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--secondary);
+      border-radius: 100px;
+      animation: pulse 2s infinite;
+    }
 
-.button:hover{
-transform:translateY(-2px);
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-}
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
 
-/* phone mockups */
+    .hero h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(36px, 5vw, 54px);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--on-surface);
+      margin-bottom: 10px;
+    }
 
-.hero-phones{
-margin-top:90px;
-display:flex;
-justify-content:center;
-gap:40px;
-flex-wrap:wrap;
-}
+    .hero h1 em {
+      font-style: italic;
+      color: var(--primary-light);
+    }
 
-.phone{
-width:270px;
-border-radius:36px;
-background:black;
-padding:10px;
-box-shadow:
-0 60px 120px rgba(0,0,0,0.25),
-0 20px 40px rgba(0,0,0,0.15);
-transition:all .4s ease;
-}
+    .hero-sub {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(18px, 2.2vw, 22px);
+      font-style: italic;
+      color: var(--on-mid);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
 
-.phone img{
-width:100%;
-border-radius:26px;
-display:block;
-}
+    .hero-body {
+      font-size: 15px;
+      color: var(--on-mid);
+      margin-bottom: 36px;
+      line-height: 1.75;
+    }
 
-.phone:hover{
-transform:translateY(-15px) scale(1.03);
-}
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-/* sections */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      letter-spacing: 0.2px;
+    }
 
-.section{
-padding:120px 0;
-}
+    .btn-primary:hover {
+      background: var(--primary-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(1, 38, 31, 0.25);
+    }
 
-.section-title{
-font-size:44px;
-text-align:center;
-margin-bottom:70px;
-}
+    .btn-primary svg {
+      width: 16px; height: 16px; fill: currentColor; flex-shrink: 0;
+    }
 
-/* features grid */
+    .btn-ghost {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--on-mid);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s;
+    }
 
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
-}
+    .btn-ghost:hover { color: var(--primary); }
 
-.feature{
-background:white;
-padding:36px;
-border-radius:18px;
-box-shadow:0 20px 50px rgba(0,0,0,0.06);
-transition:transform .3s;
-}
+    .hero-trust {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--on-light);
+    }
 
-.feature:hover{
-transform:translateY(-8px);
-}
+    .hero-trust-dot {
+      width: 4px; height: 4px;
+      background: var(--divider);
+      border-radius: 100px;
+    }
 
-/* split layout */
+    /* ─── Phone mockups ───────────────────────────────────────── */
+    .hero-phones {
+      display: flex;
+      gap: 20px;
+      align-items: flex-end;
+      position: relative;
+    }
 
-.split{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:80px;
-align-items:center;
-margin-bottom:120px;
-}
+    .phone-wrap {
+      border-radius: 32px;
+      background: var(--on-surface);
+      padding: 8px;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.22),
+        0 10px 30px rgba(0,0,0,0.12);
+      transition: transform 0.4s ease;
+    }
 
-.split img{
-width:100%;
-border-radius:24px;
-box-shadow:0 30px 70px rgba(0,0,0,0.15);
-}
+    .phone-wrap:hover { transform: translateY(-8px); }
 
-/* chart section */
+    .phone-wrap.phone-main {
+      width: 185px;
+      transform: translateY(0);
+      z-index: 2;
+    }
 
-.chart-card{
-background:white;
-padding:60px;
-border-radius:24px;
-box-shadow:0 30px 60px rgba(0,0,0,0.08);
-max-width:700px;
-margin:auto;
-text-align:center;
-}
+    .phone-wrap.phone-back {
+      width: 160px;
+      transform: translateY(30px) rotate(3deg);
+      opacity: 0.85;
+      z-index: 1;
+    }
 
-.chart{
-display:flex;
-align-items:flex-end;
-justify-content:center;
-gap:40px;
-height:200px;
-margin-bottom:20px;
-}
+    .phone-wrap.phone-back:hover {
+      transform: translateY(20px) rotate(3deg);
+    }
 
-.bar{
-width:60px;
-border-radius:12px;
-animation:grow 2s ease forwards;
-}
+    .phone-wrap img {
+      width: 100%;
+      border-radius: 24px;
+      display: block;
+    }
 
-.protein{
-background:#4CAF50;
-height:0;
-animation-delay:.2s;
-}
+    /* ─── Section base ────────────────────────────────────────── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 90px 28px;
+    }
 
-.carbs{
-background:#4A90E2;
-height:0;
-animation-delay:.4s;
-}
+    .section + .section {
+      padding-top: 0;
+    }
 
-.fat{
-background:#F4A261;
-height:0;
-animation-delay:.6s;
-}
+    .section-divider {
+      max-width: 1100px;
+      margin: 0 auto;
+      border: none;
+      border-top: 1px solid var(--divider);
+    }
 
-.labels{
-display:flex;
-justify-content:center;
-gap:50px;
-color:#555;
-}
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
 
-@keyframes grow{
-to{
-height:160px;
-}
-}
+    .section-h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 600;
+      color: var(--on-surface);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
 
-/* CTA */
+    .section-h2 em { font-style: italic; color: var(--primary-light); }
 
-.cta-section{
-text-align:center;
-background:white;
-padding:100px 60px;
-border-radius:30px;
-box-shadow:0 25px 60px rgba(0,0,0,0.08);
-}
+    .section-lead {
+      font-size: 16px;
+      color: var(--on-mid);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
 
-/* footer */
+    /* ─── Why BetterPlate — feature cards ────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
 
-footer{
-margin-top:120px;
-padding:60px;
-background:#1F2933;
-color:#D1D5DB;
-text-align:center;
-}
+    @media (max-width: 700px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
 
-footer a{
-color:#D1D5DB;
-margin:0 12px;
-text-decoration:none;
-}
+    .feat-card {
+      background: var(--card);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
 
-/* scroll animations */
+    .feat-card:hover {
+      border-color: #c4ddd5;
+      box-shadow: 0 8px 32px rgba(1,38,31,0.08);
+      transform: translateY(-3px);
+    }
 
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:all .8s ease;
-}
+    .feat-icon {
+      font-size: 26px;
+      margin-bottom: 14px;
+      display: block;
+    }
 
-.fade.visible{
-opacity:1;
-transform:translateY(0);
-}
+    .feat-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin-bottom: 8px;
+    }
 
-</style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MM6MNYY0TF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-MM6MNYY0TF');
-</script>
+    .feat-card p {
+      font-size: 13px;
+      color: var(--on-mid);
+      line-height: 1.7;
+    }
+
+    /* ─── Food ticker ─────────────────────────────────────────── */
+    .food-ticker-wrap {
+      overflow: hidden;
+      margin: 48px 0;
+      position: relative;
+    }
+
+    .food-ticker-wrap::before,
+    .food-ticker-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .food-ticker-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, var(--surface), transparent);
+    }
+
+    .food-ticker-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, var(--surface), transparent);
+    }
+
+    .food-ticker {
+      display: flex;
+      gap: 12px;
+      animation: ticker 30s linear infinite;
+      width: max-content;
+    }
+
+    .food-ticker:hover { animation-play-state: paused; }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .food-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--card);
+      border: 1px solid var(--divider);
+      border-radius: 100px;
+      padding: 8px 16px;
+      white-space: nowrap;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--on-mid);
+      flex-shrink: 0;
+    }
+
+    .food-pill span { font-size: 16px; }
+
+    /* ─── Split sections ──────────────────────────────────────── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      padding: 80px 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .split.reverse { direction: rtl; }
+    .split.reverse > * { direction: ltr; }
+
+    @media (max-width: 760px) {
+      .split, .split.reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        padding: 50px 24px;
+        gap: 36px;
+      }
+    }
+
+    .split-text p {
+      font-size: 15px;
+      color: var(--on-mid);
+      line-height: 1.8;
+      margin-top: 14px;
+      max-width: 420px;
+    }
+
+    .split-img {
+      border-radius: 28px;
+      background: var(--on-surface);
+      padding: 8px;
+      box-shadow:
+        0 30px 70px rgba(0,0,0,0.18),
+        0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .split-img img {
+      width: 100%;
+      border-radius: 22px;
+      display: block;
+    }
+
+    /* ─── Stats bar ───────────────────────────────────────────── */
+    .stats-bar {
+      background: var(--primary);
+      padding: 48px 28px;
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    @media (max-width: 600px) {
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    .stat-item {
+      padding: 16px 24px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Manrope', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.4;
+    }
+
+    /* ─── Nutrition visual ────────────────────────────────────── */
+    .nutrition-visual {
+      background: var(--card);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius);
+      padding: 36px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .nv-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--on-light);
+      margin-bottom: 24px;
+    }
+
+    .nv-macro {
+      margin-bottom: 18px;
+    }
+
+    .nv-macro-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 7px;
+    }
+
+    .nv-macro-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--on-surface);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nv-macro-val {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--on-mid);
+    }
+
+    .nv-bar-track {
+      height: 8px;
+      background: var(--surface-dim);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .nv-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      transform-origin: left;
+      animation: barGrow 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .nv-bar-fill:nth-child(1) { animation-delay: 0.2s; }
+
+    @keyframes barGrow {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    .nv-meals {
+      margin-top: 28px;
+      border-top: 1px solid var(--surface-dim);
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nv-meal-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nv-meal-dot {
+      width: 8px; height: 8px;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+
+    .nv-meal-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--on-surface);
+      flex: 1;
+    }
+
+    .nv-meal-cal {
+      font-size: 12px;
+      color: var(--on-light);
+    }
+
+    /* ─── Founder strip ───────────────────────────────────────── */
+    .founder-strip {
+      background: var(--surface-low);
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+      padding: 64px 28px;
+    }
+
+    .founder-strip-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .founder-strip blockquote {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(19px, 2.8vw, 26px);
+      font-style: italic;
+      color: var(--on-surface);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .founder-strip cite {
+      font-style: normal;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--on-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .founder-avatar {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+      border-radius: 100px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    /* ─── CTA ─────────────────────────────────────────────────── */
+    .cta-section {
+      padding: 100px 28px;
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-section h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(30px, 4.5vw, 44px);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--on-surface);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .cta-section p {
+      font-size: 16px;
+      color: var(--on-mid);
+      margin-bottom: 36px;
+    }
+
+    .cta-note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--on-light);
+    }
+
+    /* ─── Footer ──────────────────────────────────────────────── */
+    footer {
+      background: var(--primary);
+      padding: 48px 28px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: -0.3px;
+    }
+
+    .footer-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.9); }
+
+    .footer-copy {
+      width: 100%;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ─── Scroll fade-in ──────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* stagger children */
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+    .stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.1s; }
+    .stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.2s; }
+    .stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.3s; }
+  </style>
 </head>
-
-
 <body>
 
-
-<header>
-
-<div class="container nav">
-
-<div class="logo">
-<img src="icon.png">
-BetterPlate
-</div>
-
-<div>
-<a href="/">Home</a>
-<a href="/about">About</a>
-<a href="/privacy">Privacy</a>
-<a href="/contact">Contact</a>
-</div>
-
-</div>
-
-</header>
-
-
-
-<section class="hero">
-
-<div class="container">
-
-<h1>Eat Better Without<br>Counting Calories</h1>
-
-<p>
-BetterPlate helps you understand your nutrition balance
-and build healthier eating habits.
-</p>
-
-<a class="button">Coming Soon on Google Play</a>
-
-<div class="hero-phones">
-
-<div class="phone">
-<img src="app-home.png">
-</div>
-
-<div class="phone">
-<img src="app-addmeal.png">
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<section class="section">
-
-<div class="container">
-
-<h2 class="section-title fade">Why BetterPlate?</h2>
-
-<div class="features">
-
-<div class="feature fade">
-<h3>Understand Nutrition</h3>
-<p>Track macro and micronutrients instantly.</p>
-</div>
-
-<div class="feature fade">
-<h3>Simple Meal Logging</h3>
-<p>Log meals quickly without complicated calorie counting.</p>
-</div>
-
-<div class="feature fade">
-<h3>Build Healthy Habits</h3>
-<p>Focus on long-term sustainable eating habits.</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<section class="section container split fade">
-
-<div>
-<h2>Track Meals Easily</h2>
-<p>Add meals quickly and see nutrition update instantly.</p>
-</div>
-
-<img src="app-addmeal.png">
-
-</section>
-
-
-
-<section class="section container split fade">
-
-<img src="app-history.png">
-
-<div>
-<h2>Review Your Nutrition Journey</h2>
-<p>Analyze daily and weekly nutrition trends.</p>
-</div>
-
-</section>
-
-
-
-<section class="section container split fade">
-
-<div>
-<h2>Smart Nutrition Insights</h2>
-<p>BetterPlate provides simple insights to improve your diet.</p>
-</div>
-
-<img src="app-insights.png">
-
-</section>
-
-
-
-<section class="section container split fade">
-
-<img src="app-profile.png">
-
-<div>
-<h2>Personalized Goals</h2>
-<p>Customize calorie, macro and lifestyle targets.</p>
-</div>
-
-</section>
-
-
-
-<section class="section">
-
-<div class="container">
-
-<h2 class="section-title">Visualize Your Nutrition</h2>
-
-<div class="chart-card">
-
-<div class="chart">
-
-<div class="bar protein"></div>
-<div class="bar carbs"></div>
-<div class="bar fat"></div>
-
-</div>
-
-<div class="labels">
-<span>Protein</span>
-<span>Carbs</span>
-<span>Fat</span>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<section class="section">
-
-<div class="container">
-
-<div class="cta-section fade">
-
-<h2>Start Eating Better Today</h2>
-
-<p>
-BetterPlate is launching soon on Google Play.
-Join early access to be among the first users.
-</p>
-
-<br>
-
-<a class="button" 
-href="https://forms.gle/h38rr28BApdcXzqZ8"
-target="_blank">
-Join Early Access
-</a>
-<p style="margin-top:14px;color:#6b7280;font-size:14px;">
-Get notified when BetterPlate launches.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<footer class="site-footer">
-
-<p class="footer-tagline">BetterPlate — Eat Better. Live Better.</p>
-
-<nav class="footer-links">
-<a href="/">Home</a>
-<a href="/about/">About</a>
-<a href="/privacy/">Privacy</a>
-<a href="/contact/">Contact</a>
-</nav>
-
-<p class="footer-copy">© 2026 BetterPlate</p>
-
-</footer>
-
-
-
-<script>
-
-const elements=document.querySelectorAll(".fade");
-
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("visible");
-}
-});
-});
-
-elements.forEach(el=>{
-observer.observe(el);
-});
-
-</script>
+  <!-- ── Nav ──────────────────────────────────────────────────── -->
+  <div class="nav-wrap">
+    <nav>
+      <a href="/" class="nav-logo">
+        <img src="icon.png" alt="BetterPlate">
+        <span class="nav-logo-name">BetterPlate</span>
+      </a>
+      <div class="nav-links">
+        <a href="/about/">About</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="https://play.google.com/store/apps/details?id=com.srdtechlabs.betterplate"
+           target="_blank" rel="noopener" class="nav-cta">
+          Get the App
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section>
+    <div class="hero">
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot"></span>
+          Now on Google Play
+        </div>
+        <h1>Nutrition tracking<br>for <em>real Indian food.</em></h1>
+        <p class="hero-sub">Dal. Roti. Sabzi. Rice. Tracked properly.</p>
+        <p class="hero-body">
+          Most nutrition apps treat Indian food as an afterthought.
+          BetterPlate was built the other way around — starting with
+          the food 1.4 billion people actually eat every day.
+        </p>
+        <div class="hero-actions">
+          <a href="https://play.google.com/store/apps/details?id=com.srdtechlabs.betterplate"
+             target="_blank" rel="noopener" class="btn-primary">
+            <svg viewBox="0 0 24 24"><path d="M3 20.5v-17c0-.83 1-.92 1.5-.5l14 8.5-14 8.5c-.5.42-1.5.33-1.5-.5z"/></svg>
+            Download Free
+          </a>
+          <a href="/about/" class="btn-ghost">
+            Our story →
+          </a>
+        </div>
+        <div class="hero-trust">
+          <span>Free to download</span>
+          <span class="hero-trust-dot"></span>
+          <span>No account needed</span>
+          <span class="hero-trust-dot"></span>
+          <span>Your data stays on your phone</span>
+        </div>
+      </div>
+
+      <div class="hero-phones">
+        <div class="phone-wrap phone-back">
+          <img src="app-addmeal.png" alt="Add meal screen">
+        </div>
+        <div class="phone-wrap phone-main">
+          <img src="app-home.png" alt="Home screen">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Food ticker ───────────────────────────────────────────── -->
+  <div class="food-ticker-wrap">
+    <div class="food-ticker">
+      <!-- First set -->
+      <div class="food-pill"><span>🍛</span> Dal Tadka</div>
+      <div class="food-pill"><span>🫓</span> Roti</div>
+      <div class="food-pill"><span>🍚</span> Steamed Rice</div>
+      <div class="food-pill"><span>🥘</span> Paneer Butter Masala</div>
+      <div class="food-pill"><span>🍳</span> Poha</div>
+      <div class="food-pill"><span>🥞</span> Dosa</div>
+      <div class="food-pill"><span>🫔</span> Paratha</div>
+      <div class="food-pill"><span>🍲</span> Rajma</div>
+      <div class="food-pill"><span>🥗</span> Sprouts Salad</div>
+      <div class="food-pill"><span>☕</span> Chai</div>
+      <div class="food-pill"><span>🍱</span> Idli Sambar</div>
+      <div class="food-pill"><span>🧆</span> Chole Bhature</div>
+      <div class="food-pill"><span>🍜</span> Biryani</div>
+      <div class="food-pill"><span>🥣</span> Upma</div>
+      <div class="food-pill"><span>🫙</span> Curd Rice</div>
+      <div class="food-pill"><span>🥬</span> Palak Paneer</div>
+      <div class="food-pill"><span>🍢</span> Kadhi</div>
+      <div class="food-pill"><span>🫘</span> Moong Dal</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="food-pill"><span>🍛</span> Dal Tadka</div>
+      <div class="food-pill"><span>🫓</span> Roti</div>
+      <div class="food-pill"><span>🍚</span> Steamed Rice</div>
+      <div class="food-pill"><span>🥘</span> Paneer Butter Masala</div>
+      <div class="food-pill"><span>🍳</span> Poha</div>
+      <div class="food-pill"><span>🥞</span> Dosa</div>
+      <div class="food-pill"><span>🫔</span> Paratha</div>
+      <div class="food-pill"><span>🍲</span> Rajma</div>
+      <div class="food-pill"><span>🥗</span> Sprouts Salad</div>
+      <div class="food-pill"><span>☕</span> Chai</div>
+      <div class="food-pill"><span>🍱</span> Idli Sambar</div>
+      <div class="food-pill"><span>🧆</span> Chole Bhature</div>
+      <div class="food-pill"><span>🍜</span> Biryani</div>
+      <div class="food-pill"><span>🥣</span> Upma</div>
+      <div class="food-pill"><span>🫙</span> Curd Rice</div>
+      <div class="food-pill"><span>🥬</span> Palak Paneer</div>
+      <div class="food-pill"><span>🍢</span> Kadhi</div>
+      <div class="food-pill"><span>🫘</span> Moong Dal</div>
+    </div>
+  </div>
+
+  <!-- ── Stats bar ─────────────────────────────────────────────── -->
+  <div class="stats-bar">
+    <div class="stats-inner stagger">
+      <div class="stat-item">
+        <p class="stat-num">1500+</p>
+        <p class="stat-desc">Indian foods in the database</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-num">29</p>
+        <p class="stat-desc">Nutrients tracked per food item</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-num">0</p>
+        <p class="stat-desc">Servers holding your health data</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-num">Free</p>
+        <p class="stat-desc">Core tracking, always free to use</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Why BetterPlate ───────────────────────────────────────── -->
+  <section class="section fade-up">
+    <p class="eyebrow">Why BetterPlate</p>
+    <h2 class="section-h2">Built for the way <em>you</em> eat.</h2>
+    <p class="section-lead">
+      Not for someone who eats quinoa bowls and protein shakes. For someone
+      who has dal-chawal for lunch and wonders how much protein was actually in it.
+    </p>
+    <div class="features-grid stagger">
+      <div class="feat-card">
+        <span class="feat-icon">🍛</span>
+        <h3>Indian food done right</h3>
+        <p>Regional dishes, Hindi names, realistic serving sizes. Dal fry is one item, not seventeen confusing duplicates.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">⚡</span>
+        <h3>Fast enough to stick with</h3>
+        <p>Log a meal in under 30 seconds. The best tracking habit is the one you actually keep doing.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🔒</span>
+        <h3>Stays on your phone</h3>
+        <p>No account. No cloud. No one reading your food diary. Everything lives on your device.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🧬</span>
+        <h3>Beyond just calories</h3>
+        <p>Protein, carbs, fat, fibre, iron, vitamin D — the full picture, not just one number.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🚫</span>
+        <h3>No paywall nagging</h3>
+        <p>The free version is genuinely useful. Premium is clearly marked, not hiding behind every second tap.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">📊</span>
+        <h3>Progress you can see</h3>
+        <p>Weekly trends, streaks, and insights that actually mean something for your eating patterns.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── Nutrition visual ──────────────────────────────────────── -->
+  <section class="section fade-up">
+    <p class="eyebrow">What tracking looks like</p>
+    <h2 class="section-h2">Your nutrition,<br><em>at a glance.</em></h2>
+    <p class="section-lead">
+      See exactly where you stand — macros, meals, and how the day is shaping up.
+      No spreadsheet required.
+    </p>
+    <div class="nutrition-visual">
+      <p class="nv-label">Today's macros — example day</p>
+
+      <div class="nv-macro">
+        <div class="nv-macro-head">
+          <span class="nv-macro-name">Protein</span>
+          <span class="nv-macro-val">68g / 120g</span>
+        </div>
+        <div class="nv-bar-track">
+          <div class="nv-bar-fill" style="width:57%; background: var(--primary);"></div>
+        </div>
+      </div>
+
+      <div class="nv-macro">
+        <div class="nv-macro-head">
+          <span class="nv-macro-name">Carbohydrates</span>
+          <span class="nv-macro-val">180g / 240g</span>
+        </div>
+        <div class="nv-bar-track">
+          <div class="nv-bar-fill" style="width:75%; background: var(--secondary);"></div>
+        </div>
+      </div>
+
+      <div class="nv-macro">
+        <div class="nv-macro-head">
+          <span class="nv-macro-name">Fats</span>
+          <span class="nv-macro-val">32g / 65g</span>
+        </div>
+        <div class="nv-bar-track">
+          <div class="nv-bar-fill" style="width:49%; background: #4caf7d;"></div>
+        </div>
+      </div>
+
+      <div class="nv-meals">
+        <div class="nv-meal-row">
+          <div class="nv-meal-dot" style="background:#e07b20;"></div>
+          <span class="nv-meal-name">Breakfast — Poha + Chai</span>
+          <span class="nv-meal-cal">320 kcal</span>
+        </div>
+        <div class="nv-meal-row">
+          <div class="nv-meal-dot" style="background:var(--primary-light);"></div>
+          <span class="nv-meal-name">Lunch — Dal, Roti × 2, Sabzi</span>
+          <span class="nv-meal-cal">610 kcal</span>
+        </div>
+        <div class="nv-meal-row">
+          <div class="nv-meal-dot" style="background:var(--on-light);"></div>
+          <span class="nv-meal-name">Dinner</span>
+          <span class="nv-meal-cal">not logged yet</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── Split — Add meal ──────────────────────────────────────── -->
+  <div class="split fade-up">
+    <div class="split-text">
+      <p class="eyebrow">Meal logging</p>
+      <h2 class="section-h2">Find it.<br>Log it.<br><em>Done.</em></h2>
+      <p>
+        Search 1500+ Indian foods by name — including Hindi names and
+        regional variants. Pick your serving size, choose the meal, done.
+        No scrolling through forty versions of the same dish.
+      </p>
+    </div>
+    <div class="split-img">
+      <img src="app-addmeal.png" alt="Add meal screen in BetterPlate">
+    </div>
+  </div>
+
+  <!-- ── Split — History ───────────────────────────────────────── -->
+  <div class="split reverse fade-up">
+    <div class="split-text">
+      <p class="eyebrow">Your history</p>
+      <h2 class="section-h2">See the<br><em>bigger picture.</em></h2>
+      <p>
+        Daily logs, weekly trends, and monthly charts show how
+        your nutrition is actually tracking against your goals.
+        Patterns you'd never notice meal-to-meal become obvious over time.
+      </p>
+    </div>
+    <div class="split-img">
+      <img src="app-history.png" alt="History screen in BetterPlate">
+    </div>
+  </div>
+
+  <!-- ── Founder strip ─────────────────────────────────────────── -->
+  <div class="founder-strip">
+    <div class="founder-strip-inner fade-up">
+      <blockquote>
+        "I got a bad blood report, tried tracking on Excel for four days,
+        and realised nobody should have to do this. That frustration
+        became BetterPlate."
+      </blockquote>
+      <cite>
+        <span class="founder-avatar">S</span>
+        Sanoj — Founder, SRD Tech Labs
+      </cite>
+      <p style="margin-top:20px;">
+        <a href="/about/" style="font-size:14px; font-weight:600; color:var(--secondary); text-decoration:none;">
+          Read the full story →
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ── CTA ───────────────────────────────────────────────────── -->
+  <section class="cta-section">
+    <div class="cta-inner fade-up">
+      <h2>Start eating with intention.</h2>
+      <p>Free to download. No account required. Works from the first meal.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.srdtechlabs.betterplate"
+         target="_blank" rel="noopener" class="btn-primary" style="font-size:15px; padding:16px 32px;">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor;flex-shrink:0;">
+          <path d="M3 20.5v-17c0-.83 1-.92 1.5-.5l14 8.5-14 8.5c-.5.42-1.5.33-1.5-.5z"/>
+        </svg>
+        Get BetterPlate on Google Play
+      </a>
+      <p class="cta-note">Android · Free · No account needed</p>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">BetterPlate</p>
+        <p class="footer-tagline">by SRD Tech Labs</p>
+      </div>
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="mailto:srdtechlab@gmail.com">Contact</a>
+        <a href="https://play.google.com/store/apps/details?id=com.srdtechlabs.betterplate"
+           target="_blank" rel="noopener">Google Play</a>
+      </div>
+      <p class="footer-copy">© 2026 SRD Tech Labs · All rights reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up, .stagger').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 
 </body>
-
 </html>
