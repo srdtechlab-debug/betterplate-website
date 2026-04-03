@@ -72,23 +72,18 @@
     }
 
     .brand-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--primary);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
     }
 
-    .brand-icon svg {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: #fff;
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .brand-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    display: block;
     }
 
     .brand-name {
@@ -436,13 +431,8 @@
     <header>
       <div class="brand">
         <div class="brand-icon">
-          <!-- Leaf + fork icon -->
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.5 2 4 6 4 10c0 4.5 3.5 7.5 8 8v2" />
-            <path d="M12 20v2M8 14c1.5 1.5 4.5 2 6 0" />
-            <path d="M18 3v4M18 10v11M16 5h4" />
-          </svg>
-        </div>
+  <img src="../icon.png" alt="BetterPlate icon">
+</div>
         <span class="brand-name">BetterPlate</span>
       </div>
 
