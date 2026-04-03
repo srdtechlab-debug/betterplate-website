@@ -4,19 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About BetterPlate – Indian Nutrition Tracker App</title>
-  <meta name="description" content="Learn about BetterPlate – the Indian food nutrition tracker built for real everyday meals. Track dal, roti, sabzi, rice and 1500+ Indian foods easily.">
+  <meta name="description" content="BetterPlate was built by someone who got a bad blood report and couldn't find a nutrition app for real Indian food. 1500+ Indian foods, no nonsense, no paywalls.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://betterplate.net/about/">
- 
+
   <!-- Open Graph -->
   <meta property="og:title" content="About BetterPlate – Indian Nutrition Tracker">
-  <meta property="og:description" content="BetterPlate is a nutrition tracker designed around real Indian food. 1500+ Indian foods, no complicated dashboards.">
+  <meta property="og:description" content="Built by someone who tracked calories on Excel for 4 days before deciding enough was enough. BetterPlate is nutrition tracking for real Indian food.">
   <meta property="og:url" content="https://betterplate.net/about/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://betterplate.net/icon.png">
- 
-  <link rel="stylesheet" href="/style.css">
- 
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MM6MNYY0TF"></script>
   <script>
@@ -25,96 +27,720 @@
     gtag('js', new Date());
     gtag('config', 'G-MM6MNYY0TF');
   </script>
+
+  <style>
+    /* ── Tokens ──────────────────────────────────────────────── */
+    :root {
+      --surface:        #fbf9f4;
+      --surface-low:    #f5f3ee;
+      --surface-dim:    #ece9e2;
+      --primary:        #01261f;
+      --primary-mid:    #1a3c34;
+      --secondary:      #6d5d2b;
+      --secondary-bg:   #f5edd0;
+      --on-surface:     #1b1c19;
+      --on-mid:         #5c5f58;
+      --on-light:       #9e9e9e;
+      --divider:        #e8e5de;
+      --card:           #ffffff;
+      --error:          #ba1a1a;
+      --radius:         18px;
+      --radius-sm:      10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--surface);
+      color: var(--on-surface);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ──────────────────────────────────────────────── */
+    .page {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    /* ── Nav strip ───────────────────────────────────────────── */
+    .nav {
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--divider);
+      margin-bottom: 0;
+    }
+
+    .nav-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .nav-icon img {
+      width: 32px;
+      height: 32px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-name {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+      text-decoration: none;
+    }
+
+    .nav-sep {
+      color: var(--on-light);
+      font-size: 14px;
+      margin: 0 2px;
+    }
+
+    .nav-current {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--on-mid);
+    }
+
+    /* ── Hero ────────────────────────────────────────────────── */
+    .hero {
+      padding: 64px 0 56px;
+      border-bottom: 1px solid var(--divider);
+      margin-bottom: 72px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(36px, 6vw, 54px);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--on-surface);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      max-width: 580px;
+    }
+
+    .hero-lead {
+      font-size: 17px;
+      color: var(--on-mid);
+      max-width: 520px;
+      line-height: 1.75;
+    }
+
+    /* ── Founder section ─────────────────────────────────────── */
+    .founder {
+      margin-bottom: 80px;
+      position: relative;
+    }
+
+    .founder-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .founder-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    /* Large decorative quote mark */
+    .founder-quote-wrap {
+      position: relative;
+      padding-left: 28px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .founder-quote-wrap::before {
+      content: '\201C';
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 100px;
+      line-height: 0.8;
+      color: var(--primary);
+      opacity: 0.08;
+      position: absolute;
+      top: -10px;
+      left: -12px;
+      pointer-events: none;
+    }
+
+    .founder-graf {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-style: italic;
+      color: var(--on-surface);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .founder-graf.normal {
+      font-family: 'Manrope', sans-serif;
+      font-style: normal;
+      font-size: 15px;
+      color: var(--on-mid);
+      line-height: 1.8;
+    }
+
+    .founder-attribution {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .founder-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .founder-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+
+    .founder-title {
+      font-size: 12px;
+      color: var(--on-light);
+      margin-top: 1px;
+    }
+
+    /* ── Section headings ────────────────────────────────────── */
+    .section {
+      margin-bottom: 72px;
+    }
+
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 8px;
+    }
+
+    .section h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 600;
+      color: var(--on-surface);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .section p {
+      font-size: 15px;
+      color: var(--on-mid);
+      line-height: 1.8;
+      margin-bottom: 14px;
+      max-width: 600px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    /* ── Feature grid ────────────────────────────────────────── */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 520px) {
+      .features { grid-template-columns: 1fr; }
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: #c4ddd5;
+      box-shadow: 0 4px 24px rgba(1, 38, 31, 0.07);
+    }
+
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: var(--on-mid);
+      line-height: 1.7;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* ── Stats strip ─────────────────────────────────────────── */
+    .stats {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--divider);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 32px 0;
+    }
+
+    .stat {
+      flex: 1;
+      padding: 20px 24px;
+      border-right: 1px solid var(--divider);
+      background: var(--card);
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-value {
+      font-family: 'Manrope', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--on-light);
+      font-weight: 500;
+    }
+
+    @media (max-width: 480px) {
+      .stats { flex-direction: column; }
+      .stat { border-right: none; border-bottom: 1px solid var(--divider); }
+      .stat:last-child { border-bottom: none; }
+    }
+
+    /* ── Vision pull quote ───────────────────────────────────── */
+    .pull-quote {
+      background: var(--primary);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin: 40px 0;
+    }
+
+    .pull-quote p {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(18px, 2.8vw, 24px);
+      font-style: italic;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.6;
+      margin: 0;
+      max-width: none;
+    }
+
+    .pull-quote-attr {
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 16px;
+    }
+
+    /* ── Roadmap teaser ──────────────────────────────────────── */
+    .roadmap {
+      margin-top: 32px;
+    }
+
+    .roadmap-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--surface-dim);
+    }
+
+    .roadmap-item:last-child { border-bottom: none; }
+
+    .roadmap-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 100px;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .roadmap-dot.live   { background: var(--primary); }
+    .roadmap-dot.soon   { background: var(--secondary); }
+    .roadmap-dot.future { background: var(--divider); border: 1.5px solid var(--on-light); }
+
+    .roadmap-text h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin-bottom: 2px;
+    }
+
+    .roadmap-text p {
+      font-size: 13px;
+      color: var(--on-mid);
+      line-height: 1.6;
+      margin: 0;
+      max-width: none;
+    }
+
+    .roadmap-badge {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+
+    .roadmap-badge.live   { background: #e8f2ee; color: var(--primary-mid); }
+    .roadmap-badge.soon   { background: var(--secondary-bg); color: var(--secondary); }
+    .roadmap-badge.future { background: var(--surface-dim); color: var(--on-light); }
+
+    /* ── CTA ─────────────────────────────────────────────────── */
+    .cta-section {
+      text-align: center;
+      padding: 64px 0 0;
+      border-top: 1px solid var(--divider);
+      margin-top: 72px;
+    }
+
+    .cta-section h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--on-surface);
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      font-size: 15px;
+      color: var(--on-mid);
+      margin-bottom: 32px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.2px;
+    }
+
+    .cta-btn:hover {
+      background: var(--primary-mid);
+      transform: translateY(-1px);
+    }
+
+    .cta-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    footer {
+      margin-top: 64px;
+      padding: 28px 0;
+      border-top: 1px solid var(--divider);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--on-light);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--primary); }
+
+    /* ── Fade-in animation ───────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero, .founder, .section, .cta-section {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .founder { animation-delay: 0.1s; }
+    .section  { animation-delay: 0.15s; }
+  </style>
 </head>
 <body>
- 
-<section class="section about-section">
-  <div class="container">
-    <h1>About BetterPlate</h1>
-    <p class="lead">
-      BetterPlate was created to make nutrition tracking simple, practical, and relevant for everyday Indian eating.
+<div class="page">
+
+  <!-- ── Nav ──────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="nav-icon">
+      <img src="../icon.png" alt="BetterPlate">
+    </div>
+    <a href="/" class="nav-name">BetterPlate</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">About</span>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <header class="hero">
+    <p class="hero-eyebrow">Our story</p>
+    <h1>Built for the food you actually eat.</h1>
+    <p class="hero-lead">
+      BetterPlate is a nutrition tracker designed around real Indian meals —
+      dal, roti, sabzi, rice, and everything in between. No Western food
+      bias. No complicated dashboards. No constant upsell prompts.
     </p>
- 
-    <h2>The Problem</h2>
-    <p>
-      Most nutrition tracking apps are built around Western food databases.
-      If you try to track a typical Indian meal — dal, roti, sabzi, rice — you often end up scrolling through endless irrelevant options.
-    </p>
-    <p>
-      This makes calorie tracking frustrating, inaccurate, and time-consuming. Many people simply give up.
-    </p>
- 
-    <h2>Our Mission</h2>
-    <p>
-      BetterPlate exists to make healthy eating easier for millions of people by providing a nutrition tracker designed around real Indian food.
-    </p>
-    <p>
-      Our goal is simple:
-    </p>
-    <ul>
-      <li>Make food tracking effortless</li>
-      <li>Support real everyday meals</li>
-      <li>Help users build healthier habits over time</li>
-    </ul>
- 
-    <h2>What Makes BetterPlate Different</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>Indian Food Database</h3>
-        <p>
-          BetterPlate focuses on foods people actually eat daily — dal, roti, sabzi, rice, idli, dosa, poha and hundreds more. Over 1500+ Indian foods covered.
-        </p>
-      </div>
-      <div class="feature">
-        <h3>Simple by Design</h3>
-        <p>
-          No complicated dashboards or overwhelming features. Just the tools needed to track food and nutrition clearly.
-        </p>
-      </div>
-      <div class="feature">
-        <h3>Built for Consistency</h3>
-        <p>
-          The best nutrition plan is the one you can follow. BetterPlate is designed to make daily tracking quick enough to stick with.
-        </p>
-      </div>
-      <div class="feature">
-        <h3>Privacy Focused</h3>
-        <p>
-          BetterPlate works without unnecessary data collection or complicated account systems.
-          Your nutrition data stays with you.
-        </p>
+  </header>
+
+  <!-- ── Founder story ─────────────────────────────────────────── -->
+  <div class="founder">
+    <p class="founder-label">Why this exists</p>
+    <div class="founder-quote-wrap">
+      <p class="founder-graf">
+        A bad blood report changes things. Mine did.
+      </p>
+      <p class="founder-graf normal">
+        Four years of ignoring my lipid profile caught up with me. I was
+        what doctors politely call "skinny fat" — lean on the outside,
+        metabolic chaos on the inside. Six kilos of fat to lose, and
+        finally, the motivation to do something about it.
+      </p>
+      <p class="founder-graf normal">
+        I tried every calorie tracking app on the Play Store. One had
+        seventeen versions of "dal fry" with wildly different calorie
+        counts. Another had no Indian food at all. The rest were either
+        confusing to navigate or pushed paid upgrades every time I opened
+        them. I just wanted to log my lunch.
+      </p>
+      <p class="founder-graf normal">
+        So I did what any Excel-addicted professional does — I built a
+        spreadsheet. Columns for food, grams, macros, totals. It worked,
+        technically. I lasted four days before I accepted that nobody
+        should have to do this.
+      </p>
+      <p class="founder-graf">
+        That frustration became BetterPlate.
+      </p>
+      <p class="founder-graf normal">
+        I realised I wasn't alone. There are millions of young
+        professionals in India trying to eat better — people who grew up
+        on dal-chawal and sabzi-roti, not chicken salads and quinoa bowls.
+        They deserve a nutrition app built around their food, not one that
+        treats Indian cuisine as an afterthought.
+      </p>
+    </div>
+    <div class="founder-attribution">
+      <div class="founder-avatar">S</div>
+      <div>
+        <p class="founder-name">SRD</p>
+        <p class="founder-title">Founder, SRD Tech Labs</p>
       </div>
     </div>
- 
-    <h2>Our Vision</h2>
+  </div>
+
+  <!-- ── What makes it different ───────────────────────────────── -->
+  <div class="section">
+    <p class="section-eyebrow">The product</p>
+    <h2>No nonsense. Just nutrition.</h2>
     <p>
-      We believe small daily habits lead to lifelong health.
+      Every decision in BetterPlate was made by asking one question:
+      would this make it easier or harder to just log the meal?
     </p>
+
+    <div class="stats">
+      <div class="stat">
+        <p class="stat-value">1500+</p>
+        <p class="stat-label">Indian foods in database</p>
+      </div>
+      <div class="stat">
+        <p class="stat-value">29</p>
+        <p class="stat-label">Nutrients tracked per food</p>
+      </div>
+      <div class="stat">
+        <p class="stat-value">0</p>
+        <p class="stat-label">Servers holding your data</p>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feature-card">
+        <span class="feature-icon">🍛</span>
+        <h3>Indian food, done right</h3>
+        <p>Dal, roti, idli, dosa, biryani, poha — tracked properly with regional variants, Hindi names, and realistic serving sizes.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>Fast enough to use daily</h3>
+        <p>The best tracking habit is the one you actually keep. BetterPlate is designed so logging a meal takes under 30 seconds.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <h3>Entirely on your device</h3>
+        <p>No account needed. No cloud sync. Your nutrition data lives on your phone and goes nowhere else.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🚫</span>
+        <h3>No paywall harassment</h3>
+        <p>The free version is genuinely useful. Premium features are clearly labelled — not locked behind every other tap.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Vision ────────────────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-eyebrow">Where we're going</p>
+    <h2>Small habits. Long game.</h2>
     <p>
-      BetterPlate aims to help millions of people become more aware of what they eat and make better choices — one meal at a time.
+      BetterPlate is designed around a simple belief: awareness is the
+      first step. When you actually know what you're eating, better
+      choices follow naturally.
     </p>
+
+    <div class="pull-quote">
+      <p>"The goal was never to build another calorie counter. It was to build something a busy Indian professional would actually open every day."</p>
+      <p class="pull-quote-attr">— SRD, Founder</p>
+    </div>
+
     <p>
-      As the platform grows, BetterPlate will expand to include smarter nutrition insights, improved food databases, and tools that help people stay consistent with their health goals.
+      What's next is something we're keeping deliberately quiet about —
+      not because there's nothing coming, but because the best features
+      reveal themselves when you start using the app consistently.
+      The foundation is solid. Build on it daily.
     </p>
- 
-    <h2>Early Access</h2>
-    <p>
-      BetterPlate is currently launching on Google Play.
-    </p>
-    <p>
-      Early users help shape the future of the app by giving feedback, suggesting features, and helping us improve the food database.
-    </p>
- 
-    <h2>Get Started</h2>
-    <p>
-      Join the early access list and be among the first users of BetterPlate.
-    </p>
-    <a href="https://forms.gle/YOURFORM" class="cta-button">
-      Join Early Access
+
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-dot live"></div>
+        <div class="roadmap-text">
+          <h4>Core tracking</h4>
+          <p>Calories, macros, micronutrients, water, streaks, custom recipes, meal history.</p>
+        </div>
+        <span class="roadmap-badge live">Live</span>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot soon"></div>
+        <div class="roadmap-text">
+          <h4>Deeper nutrition insights</h4>
+          <p>More nuance. More context. More reasons to care about what you eat.</p>
+        </div>
+        <span class="roadmap-badge soon">Coming soon</span>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot future"></div>
+        <div class="roadmap-text">
+          <h4>Something smarter</h4>
+          <p>We're not saying yet. Use the app and you'll see why it matters.</p>
+        </div>
+        <span class="roadmap-badge future">Later</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CTA ───────────────────────────────────────────────────── -->
+  <div class="cta-section">
+    <h2>Start eating with intention.</h2>
+    <p>Free to download. No account required. Works from the first meal.</p>
+    <a
+      href="https://play.google.com/store/apps/details?id=com.srdtechlabs.betterplate"
+      class="cta-btn"
+      target="_blank"
+      rel="noopener"
+    >
+      <!-- Google Play icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 20.5v-17c0-.83 1-.92 1.5-.5l14 8.5-14 8.5c-.5.42-1.5.33-1.5-.5z"/>
+      </svg>
+      Get BetterPlate on Google Play
     </a>
   </div>
-</section>
- 
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer>
+    <span class="footer-brand">BetterPlate</span>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="mailto:srdtechlab@gmail.com">Contact</a>
+    </div>
+  </footer>
+
+</div>
 </body>
 </html>
- 
