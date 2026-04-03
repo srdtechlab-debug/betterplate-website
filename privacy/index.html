@@ -4,51 +4,882 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy – BetterPlate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MM6MNYY0TF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MM6MNYY0TF');
+  </script>
+
   <style>
-    body { font-family: sans-serif; max-width: 720px; margin: 60px auto; padding: 0 24px; line-height: 1.8; color: #222; }
-    h1 { font-size: 24px; margin-bottom: 4px; }
-    h2 { font-size: 16px; margin-top: 32px; margin-bottom: 8px; }
-    p { font-size: 15px; }
-    a { color: #0D6B56; }
-    .muted { color: #888; font-size: 13px; }
+    /* ── Design tokens ─────────────────────────────────────────── */
+    :root {
+      --surface:       #fbf9f4;
+      --surface-low:   #f5f3ee;
+      --surface-dim:   #ece9e2;
+      --primary:       #01261f;
+      --primary-mid:   #1a3c34;
+      --secondary:     #6d5d2b;
+      --on-surface:    #1b1c19;
+      --on-mid:        #5c5f58;
+      --on-light:      #9e9e9e;
+      --divider:       #e8e5de;
+      --error:         #ba1a1a;
+      --card:          #ffffff;
+      --radius:        16px;
+      --radius-sm:     10px;
+    }
+
+    /* ── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Base ──────────────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--surface);
+      color: var(--on-surface);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout wrapper ────────────────────────────────────────── */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Header ────────────────────────────────────────────────── */
+    header {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--divider);
+      margin-bottom: 48px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .brand-name {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+    }
+
+    h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(32px, 5vw, 46px);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--on-surface);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    .meta-chip {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: var(--on-mid);
+      background: var(--surface-low);
+      border: 1px solid var(--divider);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .meta-chip.green {
+      color: var(--primary-mid);
+      background: #e8f2ee;
+      border-color: #c4ddd5;
+    }
+
+    /* ── Table of contents ─────────────────────────────────────── */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 48px;
+    }
+
+    .toc-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--on-light);
+      margin-bottom: 14px;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc-counter;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+    }
+
+    @media (max-width: 480px) {
+      .toc ol { grid-template-columns: 1fr; }
+    }
+
+    .toc li {
+      counter-increment: toc-counter;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .toc li::before {
+      content: counter(toc-counter, decimal-leading-zero);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--on-light);
+      min-width: 18px;
+    }
+
+    .toc a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--on-mid);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .toc a:hover { color: var(--primary); }
+
+    /* ── Sections ──────────────────────────────────────────────── */
+    section {
+      margin-bottom: 48px;
+      scroll-margin-top: 24px;
+    }
+
+    .section-number {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--on-surface);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--on-mid);
+      margin-bottom: 14px;
+      line-height: 1.8;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Cards ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+
+    .card-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--surface-low);
+    }
+
+    .card-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .card-row:first-child { padding-top: 0; }
+
+    .card-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 15px;
+    }
+
+    .card-icon.green  { background: #e8f2ee; }
+    .card-icon.amber  { background: #fdf3e3; }
+    .card-icon.blue   { background: #e8f0fe; }
+    .card-icon.red    { background: #fce8e6; }
+    .card-icon.purple { background: #f0ebff; }
+
+    .card-text { flex: 1; }
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin-bottom: 2px;
+    }
+    .card-body {
+      font-size: 13px;
+      color: var(--on-mid);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Table ─────────────────────────────────────────────────── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--on-light);
+      padding: 8px 14px;
+      background: var(--surface-low);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .data-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+    .data-table th:last-child  { border-radius: 0 var(--radius-sm) 0 0; }
+
+    .data-table td {
+      padding: 11px 14px;
+      color: var(--on-mid);
+      border-bottom: 1px solid var(--surface-low);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .data-table td:first-child { font-weight: 600; color: var(--on-surface); }
+
+    .data-table-wrap {
+      border: 1px solid var(--divider);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    /* ── Highlight box ─────────────────────────────────────────── */
+    .highlight {
+      background: #e8f2ee;
+      border-left: 3px solid var(--primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 14px 18px;
+      margin: 20px 0;
+    }
+
+    .highlight p {
+      font-size: 14px;
+      color: var(--primary-mid);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .highlight strong { color: var(--primary); }
+
+    /* ── Notice box ────────────────────────────────────────────── */
+    .notice {
+      background: #fdf3e3;
+      border: 1px solid #f0d9a8;
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      margin: 20px 0;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .notice-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    .notice p {
+      font-size: 13px;
+      color: #7a5c1e;
+      margin: 0;
+    }
+
+    /* ── Steps ─────────────────────────────────────────────────── */
+    .steps {
+      margin: 16px 0;
+      padding-left: 0;
+      list-style: none;
+      counter-reset: step-counter;
+    }
+
+    .steps li {
+      counter-increment: step-counter;
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      padding: 8px 0;
+      font-size: 14px;
+      color: var(--on-mid);
+    }
+
+    .steps li::before {
+      content: counter(step-counter);
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--primary);
+      min-width: 20px;
+      height: 20px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Divider ───────────────────────────────────────────────── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--divider);
+      margin: 0 0 48px;
+    }
+
+    /* ── Links ─────────────────────────────────────────────────── */
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-color: var(--divider);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s;
+    }
+
+    a:hover { text-decoration-color: var(--primary); }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--divider);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--on-light);
+    }
   </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MM6MNYY0TF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-MM6MNYY0TF');
-</script>
 </head>
 <body>
-  <h1>Privacy Policy for BetterPlate</h1>
-  <p class="muted">By SRD Tech Labs · Last updated: March 2026</p>
+  <div class="page">
 
-  <h2>Overview</h2>
-  <p>BetterPlate is a nutrition tracking app developed by SRD Tech Labs, available as a free tier (with ads) and a premium subscription (ad-free).</p>
+    <!-- ── Header ─────────────────────────────────────────────── -->
+    <header>
+      <div class="brand">
+        <div class="brand-icon">
+          <!-- Leaf + fork icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.5 2 4 6 4 10c0 4.5 3.5 7.5 8 8v2" />
+            <path d="M12 20v2M8 14c1.5 1.5 4.5 2 6 0" />
+            <path d="M18 3v4M18 10v11M16 5h4" />
+          </svg>
+        </div>
+        <span class="brand-name">BetterPlate</span>
+      </div>
 
-  <h2>Data you enter</h2>
-  <p>All meal logs, food entries, and nutrition data you enter are stored locally on your device only. This data is never transmitted to any server or third party by BetterPlate.</p>
+      <h1>Privacy Policy</h1>
+      <p style="font-size:15px; color:var(--on-mid); margin-top:10px;">
+        BetterPlate is a nutrition tracking app for Indian diets,
+        developed by SRD Tech Lab. This policy explains what data is
+        collected, how it is used, and your rights.
+      </p>
 
-  <h2>Advertising (free tier)</h2>
-  <p>The free version of BetterPlate displays ads served by Google AdMob. AdMob may collect and use data to show relevant ads, including your device's advertising ID and general location. This data is collected and processed by Google, not by BetterPlate.</p>
-  <p>To learn more about how Google uses this data, visit: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
-  <p>You can opt out of personalised ads on your Android device by going to:<br>Settings → Google → Ads → Delete advertising ID</p>
+      <div class="meta">
+        <span class="meta-chip">SRD Tech Lab</span>
+        <span class="meta-chip">Last updated: April 2026</span>
+        <span class="meta-chip green">Effective immediately</span>
+      </div>
+    </header>
 
-  <h2>Premium subscription</h2>
-  <p>Premium subscribers do not see ads. No additional data is collected for subscription management beyond what Google Play processes as part of the purchase.</p>
+    <!-- ── Table of contents ───────────────────────────────────── -->
+    <div class="toc">
+      <p class="toc-label">Contents</p>
+      <ol>
+        <li><a href="#data-you-enter">Data you enter</a></li>
+        <li><a href="#advertising">Advertising (free tier)</a></li>
+        <li><a href="#notifications">Notifications</a></li>
+        <li><a href="#permissions">App permissions</a></li>
+        <li><a href="#third-parties">Third-party services</a></li>
+        <li><a href="#data-collected">Data we collect</a></li>
+        <li><a href="#your-rights">Your rights</a></li>
+        <li><a href="#premium">Premium subscription</a></li>
+        <li><a href="#children">Children</a></li>
+        <li><a href="#changes">Changes to this policy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </div>
 
-  <h2>Permissions</h2>
-  <p>BetterPlate does not request access to your camera, contacts, location, microphone, or any other sensitive device permissions.</p>
+    <!-- ── 1. Data you enter ───────────────────────────────────── -->
+    <section id="data-you-enter">
+      <p class="section-number">01 — Core principle</p>
+      <h2>Data you enter</h2>
+      <p>
+        All meal logs, food entries, nutrition data, body measurements,
+        calorie goals, and any other information you enter into BetterPlate
+        are stored <strong>locally on your device only</strong>.
+      </p>
+      <p>
+        This data is never transmitted to any server, cloud service, or
+        third party by BetterPlate. If you uninstall the app, all your
+        data is deleted with it.
+      </p>
+      <div class="highlight">
+        <p><strong>BetterPlate has no backend.</strong> There is no account to create, no login, and no server that holds your health data. Everything stays on your phone.</p>
+      </div>
+    </section>
 
-  <h2>Children</h2>
-  <p>BetterPlate is not directed at children under the age of 13.</p>
+    <hr class="section-divider">
 
-  <h2>Changes to this policy</h2>
-  <p>We may update this policy from time to time. Any changes will be reflected on this page with an updated date.</p>
+    <!-- ── 2. Advertising ─────────────────────────────────────── -->
+    <section id="advertising">
+      <p class="section-number">02 — Free tier</p>
+      <h2>Advertising</h2>
+      <p>
+        The free version of BetterPlate displays interstitial advertisements
+        served by <strong>Google AdMob</strong> (Google LLC). Ads are shown
+        after meal logging, subject to the following limits we enforce in the app:
+      </p>
 
-  <h2>Contact</h2>
-  <p>If you have any questions about this policy, please contact SRD Tech Labs at: <a href="mailto:srdtechlab@gmail.com">srdtechlab@gmail.com</a></p>
+      <div class="card">
+        <div class="card-row">
+          <div class="card-icon amber">⏳</div>
+          <div class="card-text">
+            <p class="card-title">5-day grace period</p>
+            <p class="card-body">No ads are shown for the first 120 hours after you install the app.</p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon green">📅</div>
+          <div class="card-text">
+            <p class="card-title">Maximum 2 ads per day</p>
+            <p class="card-body">Once you've seen 2 ads in a calendar day, no more are shown until the next day.</p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon blue">🕐</div>
+          <div class="card-text">
+            <p class="card-title">Minimum 8-hour gap</p>
+            <p class="card-body">At least 8 hours must pass between any two ad impressions.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        AdMob may collect and use your device's advertising ID, IP address,
+        and general app usage signals to serve relevant ads. This data is
+        collected and processed by Google under their own privacy policy —
+        BetterPlate does not receive or store it.
+      </p>
+      <p>
+        Your nutrition data, meal logs, and health information are
+        <strong>never shared with AdMob</strong> or any advertiser.
+      </p>
+      <p>
+        To opt out of personalised ads on Android, go to:<br>
+        <strong>Settings → Google → Ads → Delete advertising ID</strong>
+        (Android 12+), or toggle "Opt out of Ads Personalisation"
+        on earlier versions.
+      </p>
+      <p>
+        To learn more about how Google uses advertising data:
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+          policies.google.com/privacy
+        </a>
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ── 3. Notifications ───────────────────────────────────── -->
+    <section id="notifications">
+      <p class="section-number">03 — Local reminders</p>
+      <h2>Notifications</h2>
+      <p>
+        BetterPlate sends local push notifications to remind you to log
+        meals and maintain your logging streak. The following notifications
+        may be scheduled:
+      </p>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Notification</th>
+              <th>Time</th>
+              <th>Condition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Breakfast reminder</td>
+              <td>8:30 AM</td>
+              <td>Skipped if you use Intermittent Fasting diet; cancelled automatically when breakfast is logged</td>
+            </tr>
+            <tr>
+              <td>Lunch reminder</td>
+              <td>11:00 AM</td>
+              <td>Message adapts if breakfast was also missed; cancelled when lunch is logged</td>
+            </tr>
+            <tr>
+              <td>Dinner reminder</td>
+              <td>7:30 PM</td>
+              <td>Cancelled when dinner is logged</td>
+            </tr>
+            <tr>
+              <td>Streak saver</td>
+              <td>10:00 PM</td>
+              <td>Only sent if no meal at all has been logged today; cancelled the moment any meal is logged</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="notice">
+        <span class="notice-icon">📍</span>
+        <p>
+          All notifications are scheduled and delivered entirely on your
+          device. No data is sent to any server to generate them.
+          A maximum of 3 notifications per day are sent — the streak saver
+          takes highest priority.
+        </p>
+      </div>
+
+      <p>
+        On <strong>Android 13 and above</strong>, you will be asked to grant
+        notification permission on first launch. You can disable notifications
+        at any time through your device's notification settings or from within
+        the app.
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ── 4. Permissions ─────────────────────────────────────── -->
+    <section id="permissions">
+      <p class="section-number">04 — Device access</p>
+      <h2>App permissions</h2>
+      <p>BetterPlate requests only the permissions it needs to function:</p>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="card-icon green">🔔</div>
+          <div class="card-text">
+            <p class="card-title">Notifications</p>
+            <p class="card-body">Required to send meal reminders and streak alerts. Requested on first launch on Android 13+.</p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon blue">🌐</div>
+          <div class="card-text">
+            <p class="card-title">Internet</p>
+            <p class="card-body">Required only for loading advertisements (free tier). Not used for any other purpose.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        BetterPlate does <strong>not</strong> request access to your camera,
+        contacts, location, microphone, storage, or any other sensitive
+        device permissions.
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ── 5. Third parties ───────────────────────────────────── -->
+    <section id="third-parties">
+      <p class="section-number">05 — External services</p>
+      <h2>Third-party services</h2>
+      <p>BetterPlate uses the following external services:</p>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Purpose</th>
+              <th>Data shared</th>
+              <th>Policy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Google AdMob</td>
+              <td>In-app advertising (free tier only)</td>
+              <td>Advertising ID, IP address, app usage signals</td>
+              <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">View</a></td>
+            </tr>
+            <tr>
+              <td>Google Analytics</td>
+              <td>Website analytics (betterplate.net only)</td>
+              <td>Page views, referrer</td>
+              <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">View</a></td>
+            </tr>
+            <tr>
+              <td>Google Play</td>
+              <td>App distribution and subscription billing</td>
+              <td>Handled entirely by Google Play</td>
+              <td><a href="https://play.google.com/about/privacy-security-deception/private-and-confidential-information/" target="_blank" rel="noopener">View</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        No other third-party SDKs, analytics tools, crash reporters, or
+        tracking libraries are included in BetterPlate.
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ── 6. Data collected ──────────────────────────────────── -->
+    <section id="data-collected">
+      <p class="section-number">06 — Full disclosure</p>
+      <h2>Data we collect</h2>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="card-icon red">🏥</div>
+          <div class="card-text">
+            <p class="card-title">Health & nutrition data</p>
+            <p class="card-body">Stored locally on your device only. Never transmitted. Includes meal logs, food entries, calorie goals, weight, height, and age.</p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon amber">📱</div>
+          <div class="card-text">
+            <p class="card-title">Advertising ID</p>
+            <p class="card-body">Collected by Google AdMob for ad serving (free tier only). Not accessed or stored by BetterPlate directly. You can reset or delete it in device settings.</p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon blue">🌐</div>
+          <div class="card-text">
+            <p class="card-title">IP address</p>
+            <p class="card-body">Sent to Google AdMob as part of standard ad requests. Not stored by BetterPlate.</p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon purple">⏱️</div>
+          <div class="card-text">
+            <p class="card-title">Session timing signals</p>
+            <p class="card-body">AdMob may infer approximate session duration for ad frequency purposes. BetterPlate enforces a max of 2 ads per day and an 8-hour minimum gap regardless.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ── 7. Your rights ─────────────────────────────────────── -->
+    <section id="your-rights">
+      <p class="section-number">07 — DPDP Act 2023</p>
+      <h2>Your rights</h2>
+      <p>
+        Under India's Digital Personal Data Protection Act 2023 (DPDP Act),
+        you have the following rights regarding your personal data:
+      </p>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="card-icon green">👁️</div>
+          <div class="card-text">
+            <p class="card-title">Right to access</p>
+            <p class="card-body">All data BetterPlate holds about you is already on your device — you can view it at any time within the app.</p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon red">🗑️</div>
+          <div class="card-text">
+            <p class="card-title">Right to erasure</p>
+            <p class="card-body">Uninstalling the app permanently deletes all locally stored data. For advertising data held by Google, reset your Advertising ID in device settings.</p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon amber">✏️</div>
+          <div class="card-text">
+            <p class="card-title">Right to correction</p>
+            <p class="card-body">You can edit or delete any meal log, body measurement, or profile detail directly within the app at any time.</p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon blue">🚫</div>
+          <div class="card-text">
+            <p class="card-title">Right to withdraw consent</p>
+            <p class="card-body">You can disable notifications in device settings at any time. You can opt out of personalised ads by deleting your Advertising ID in device settings.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        BetterPlate does not store your Advertising ID and cannot process
+        deletion requests for data held by Google. For data held by Google,
+        please use Google's
+        <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener">
+          Data & Privacy controls</a>.
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ── 8. Premium ─────────────────────────────────────────── -->
+    <section id="premium">
+      <p class="section-number">08 — Paid tiers</p>
+      <h2>Premium subscription</h2>
+      <p>
+        Premium subscribers (Poshan, Vaidya, or Guru plans) do not see
+        advertisements. AdMob is not initialised for premium users, meaning
+        no advertising data is collected from them at all.
+      </p>
+      <p>
+        Subscription purchases are processed entirely by Google Play.
+        BetterPlate does not collect or store any payment information.
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ── 9. Children ────────────────────────────────────────── -->
+    <section id="children">
+      <p class="section-number">09 — Age requirement</p>
+      <h2>Children</h2>
+      <p>
+        BetterPlate is not directed at children under the age of 13.
+        We do not knowingly collect personal data from children. If you
+        believe a child has provided information through the app,
+        please contact us and we will address it promptly.
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ── 10. Changes ────────────────────────────────────────── -->
+    <section id="changes">
+      <p class="section-number">10 — Updates</p>
+      <h2>Changes to this policy</h2>
+      <p>
+        We may update this policy from time to time as the app evolves.
+        The "Last updated" date at the top of this page will always reflect
+        the most recent version. We will not make this policy less protective
+        of your data without prominent notice.
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ── 11. Contact ────────────────────────────────────────── -->
+    <section id="contact">
+      <p class="section-number">11 — Get in touch</p>
+      <h2>Contact</h2>
+      <p>
+        If you have any questions, concerns, or requests regarding this
+        privacy policy or your data, please contact us:
+      </p>
+      <div class="card" style="margin-top:16px;">
+        <div class="card-row">
+          <div class="card-icon green">✉️</div>
+          <div class="card-text">
+            <p class="card-title">Email</p>
+            <p class="card-body">
+              <a href="mailto:srdtechlab@gmail.com">srdtechlab@gmail.com</a>
+            </p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon blue">🏢</div>
+          <div class="card-text">
+            <p class="card-title">Developer</p>
+            <p class="card-body">SRD Tech Lab, India</p>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card-icon amber">🌐</div>
+          <div class="card-text">
+            <p class="card-title">Website</p>
+            <p class="card-body">
+              <a href="https://betterplate.net" target="_blank" rel="noopener">betterplate.net</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ─────────────────────────────────────────────── -->
+    <footer>
+      <span class="footer-brand">BetterPlate</span>
+      <span class="footer-copy">© 2026 SRD Tech Lab · All rights reserved</span>
+    </footer>
+
+  </div>
 </body>
 </html>
